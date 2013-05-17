@@ -43,7 +43,6 @@
                 <td>Password</td>
                 <td>Full name</td>
                 <td>Email</td>
-                <td>Phone number</td>
                 <td>Command</td>
             </tr>
 
@@ -60,21 +59,20 @@
                     ResultSet resultSet = statement.executeQuery("SELECT * FROM users;");
                     while (resultSet.next()) {
                         out.println("<tr>");
-                        out.println("<td>" + resultSet.getString(1) + "</td>");
-                        out.println("<td>" + resultSet.getString(2) + "</td>");
                         out.println("<td>" + resultSet.getString(3) + "</td>");
                         out.println("<td>" + resultSet.getString(4) + "</td>");
                         out.println("<td>" + resultSet.getString(5) + "</td>");
+                        out.println("<td>" + resultSet.getString(6) + "</td>");
                         out.println("<td>");
                         out.println("<form action=\"myServlet\" method=\"POST\">");
                         out.println("<input type=\"hidden\" name=\"page\" value=\"admin\">");
-                        out.println("<input type=\"hidden\" name=\"username\" value=\"" + resultSet.getString(1) + "\">");
+                        out.println("<input type=\"hidden\" name=\"username\" value=\"" + resultSet.getString(3) + "\">");
                         out.println("<input type=\"hidden\" name=\"command\" value=\"edit\">");
                         out.println("<input type=\"submit\" value=\"Edit\">");
                         out.println("</form>");
                         out.println("<form action=\"myServlet\" method=\"POST\" onsubmit=\"return confirmation();\">");
                         out.println("<input type=\"hidden\" name=\"page\" value=\"admin\">");
-                        out.println("<input type=\"hidden\" name=\"username\" value=\"" + resultSet.getString(1) + "\">");
+                        out.println("<input type=\"hidden\" name=\"username\" value=\"" + resultSet.getString(3) + "\">");
                         out.println("<input type=\"hidden\" name=\"command\" value=\"delete\">");
                         out.println("<input type=\"submit\" value=\"Delete\">");
                         out.println("</form>");

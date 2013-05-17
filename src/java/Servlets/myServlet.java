@@ -83,124 +83,157 @@ public class myServlet extends HttpServlet {
                             response.sendRedirect("shelf.jsp");
                         }
                     }
+                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                    out.println(ex.toString());
                 }
-         catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            out.println(ex.toString());
-        }
-                
-    }
 
-    else if (request.getParameter ( 
-        "page").equals("signup")) {
+            } else if (request.getParameter(
+                    "page").equals("signup")) {
                 try {
-            // Construct the captchas object
-            // Use same settings as in query.jsp
-            CaptchasDotNet captchas = new captchas.CaptchasDotNet(request.getSession(true), "demo", "secret");
+                    // Construct the captchas object
+                    // Use same settings as in query.jsp
+                    CaptchasDotNet captchas = new captchas.CaptchasDotNet(request.getSession(true), "demo", "secret");
 
-            // Read the form values
-            String captcha = request.getParameter("captcha");
+                    // Read the form values
+                    String captcha = request.getParameter("captcha");
 
-            // Check captcha
-            switch (captchas.check(captcha)) {
-                case 's':
-                    // Fail
-                    response.sendRedirect("loginFailed.jsp");
-                    break;
-                case 'm':
-                    // Fail
-                    response.sendRedirect("loginFailed.jsp");
-                    break;
-                case 'w':
-                    // Fail
-                    response.sendRedirect("loginFailed.jsp");
-                    break;
-                default:
-                    // Success
+                    // Check captcha
+                    switch (captchas.check(captcha)) {
+                        case 's':
+                            // Fail
+                            response.sendRedirect("loginFailed.jsp");
+                            break;
+                        case 'm':
+                            // Fail
+                            response.sendRedirect("loginFailed.jsp");
+                            break;
+                        case 'w':
+                            // Fail
+                            response.sendRedirect("loginFailed.jsp");
+                            break;
+                        default:
+                            // Success
 
+                            // Load the driver
+                            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+                            // Connect to MySQL
+                            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+                            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, email) VALUES ( ?, ?, ?, ?, ? );");
+
+                            // Add new user
+                            preparedStatement.setString(1, "user");
+                            preparedStatement.setString(2, request.getParameter("username"));
+                            preparedStatement.setString(3, request.getParameter("password"));
+                            preparedStatement.setString(4, request.getParameter("name"));
+                            preparedStatement.setString(5, request.getParameter("email"));
+                            preparedStatement.executeUpdate();
+
+                            // Close connection to database
+                            preparedStatement.close();
+                            connection.close();
+
+                            // Redirect to index.jsp
+                            response.sendRedirect("index.jsp");
+                    }
+                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                    out.println(ex.toString());
+                }
+            } else if (request.getParameter("page").equals("admin")) {
+                try {
+                    if (request.getParameter("command").equals("delete")) {
+                        // Load the driver
+                        Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+                        // Connect to MySQL
+                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+                        Statement statement = connection.createStatement();
+
+                        // Delete the data
+                        statement.execute("DELETE FROM users WHERE username = '" + request.getParameter("username") + "';");
+
+                        // Redirect to admin.jsp
+                        response.sendRedirect("admin.jsp");
+                    } else {
+                        request.getSession(false).setAttribute("username", request.getParameter("username"));
+                        response.sendRedirect("editUser.jsp");
+                    }
+                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                    out.println(ex.toString());
+                }
+            } else if (request.getParameter("page").equals("editUser")) {
+                try {
                     // Load the driver
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
 
                     // Connect to MySQL
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                    PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, email) VALUES ( ?, ?, ?, ?, ? );");
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET password=?, name=?, email=? WHERE username=?;");
 
-                    // Add new user
-                    preparedStatement.setString(1, "user");
-                    preparedStatement.setString(2, request.getParameter("username"));
-                    preparedStatement.setString(3, request.getParameter("password"));
-                    preparedStatement.setString(4, request.getParameter("name"));
-                    preparedStatement.setString(5, request.getParameter("email"));
+                    // Update the data
+                    preparedStatement.setString(1, request.getParameter("password"));
+                    preparedStatement.setString(2, request.getParameter("name"));
+                    preparedStatement.setString(3, request.getParameter("email"));
+                    preparedStatement.setString(4, request.getSession(false).getAttribute("username").toString());
                     preparedStatement.executeUpdate();
 
-                    // Close connection to database
-                    preparedStatement.close();
-                    connection.close();
-
-                    // Redirect to index.jsp
-                    response.sendRedirect("index.jsp");
-            }
-        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            out.println(ex.toString());
-        }
-    }
-
-    else if (request.getParameter ( 
-        "page").equals("buy")) {
+                    // Redirect to admin.jsp
+                    response.sendRedirect("admin.jsp");
+                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+                    out.println(ex.toString());
+                }
+            } else if (request.getParameter(
+                    "page").equals("buy")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-        Product product = new DBManager().getProduct(request.getParameter("productID"));
+                Product product = new DBManager().getProduct(request.getParameter("productID"));
 
-        Boolean exists = false;
-        for (ProductInCart p : cart) {
-            if (p.getProductID().equals(product.getProductID())) {
-                p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
-                exists = true;
-            }
-        }
-
-        if (!exists) {
-            ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
-            cart.add(newProduct);
-        }
-
-        response.sendRedirect("shelf.jsp");
-    }
-
-    else if (request.getParameter ( 
-        "page").equals("delete")) {
-                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-
-        for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getProductID().equals(request.getParameter("productID"))) {
-                cart.remove(i);
-                break;
-            }
-        }
-
-        response.sendRedirect("checkout.jsp");
-    }
-
-    else if (request.getParameter ( 
-        "page").equals("editamount")) {
-                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-
-        for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getProductID().equals(request.getParameter("productID"))) {
-                Integer newamount = Integer.parseInt(request.getParameter("newamount"));
-
-                if (newamount == 0) {
-                    cart.remove(i);
-                } else {
-                    cart.get(i).setAmount(Integer.parseInt(request.getParameter("newamount")));
+                Boolean exists = false;
+                for (ProductInCart p : cart) {
+                    if (p.getProductID().equals(product.getProductID())) {
+                        p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
+                        exists = true;
+                    }
                 }
 
-                break;
-            }
-        }
+                if (!exists) {
+                    ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
+                    cart.add(newProduct);
+                }
 
-        response.sendRedirect("checkout.jsp");
-    }
-}
-finally {
+                response.sendRedirect("shelf.jsp");
+            } else if (request.getParameter(
+                    "page").equals("delete")) {
+                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+
+                for (int i = 0; i < cart.size(); i++) {
+                    if (cart.get(i).getProductID().equals(request.getParameter("productID"))) {
+                        cart.remove(i);
+                        break;
+                    }
+                }
+
+                response.sendRedirect("checkout.jsp");
+            } else if (request.getParameter(
+                    "page").equals("editamount")) {
+                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+
+                for (int i = 0; i < cart.size(); i++) {
+                    if (cart.get(i).getProductID().equals(request.getParameter("productID"))) {
+                        Integer newamount = Integer.parseInt(request.getParameter("newamount"));
+
+                        if (newamount == 0) {
+                            cart.remove(i);
+                        } else {
+                            cart.get(i).setAmount(Integer.parseInt(request.getParameter("newamount")));
+                        }
+
+                        break;
+                    }
+                }
+
+                response.sendRedirect("checkout.jsp");
+            }
+        } finally {
             out.close();
         }
     }
@@ -216,7 +249,7 @@ finally {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -231,7 +264,7 @@ finally {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -242,7 +275,7 @@ finally {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 }
