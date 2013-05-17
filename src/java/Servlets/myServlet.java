@@ -7,6 +7,7 @@ package Servlets;
 import Objects.DBManager;
 import Objects.Product;
 import Objects.ProductInCart;
+import captchas.CaptchasDotNet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -79,27 +80,52 @@ public class myServlet extends HttpServlet {
                 }
             } else if (request.getParameter("page").equals("signup")) {
                 try {
-                    // Load the driver
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    // Construct the captchas object
+                    // Use same settings as in query.jsp
+                    CaptchasDotNet captchas = new captchas.CaptchasDotNet(request.getSession(true), "demo", "secret");
 
-                    // Connect to MySQL
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                    PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, email) VALUES ( ?, ?, ?, ?, ? );");
+                    // Read the form values
+                    String captcha = request.getParameter("captcha");
 
-                    // Add new user
-                    preparedStatement.setString(1, "user");
-                    preparedStatement.setString(2, request.getParameter("username"));
-                    preparedStatement.setString(3, request.getParameter("password"));
-                    preparedStatement.setString(4, request.getParameter("name"));
-                    preparedStatement.setString(5, request.getParameter("email"));
-                    preparedStatement.executeUpdate();
+                    // Check captcha
+                    switch (captchas.check(captcha)) {
+                        case 's':
+                            // Fail
+                            response.sendRedirect("loginFailed.jsp");
+                            break;
+                        case 'm':
+                            // Fail
+                            response.sendRedirect("loginFailed.jsp");
+                            break;
+                        case 'w':
+                            // Fail
+                            response.sendRedirect("loginFailed.jsp");
+                            break;
+                        default:
+                            // Success
 
-                    // Close connection to database
-                    preparedStatement.close();
-                    connection.close();
+                            // Load the driver
+                            Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                    // Redirect to index.jsp
-                    response.sendRedirect("index.jsp");
+                            // Connect to MySQL
+                            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+                            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, email) VALUES ( ?, ?, ?, ?, ? );");
+
+                            // Add new user
+                            preparedStatement.setString(1, "user");
+                            preparedStatement.setString(2, request.getParameter("username"));
+                            preparedStatement.setString(3, request.getParameter("password"));
+                            preparedStatement.setString(4, request.getParameter("name"));
+                            preparedStatement.setString(5, request.getParameter("email"));
+                            preparedStatement.executeUpdate();
+
+                            // Close connection to database
+                            preparedStatement.close();
+                            connection.close();
+
+                            // Redirect to index.jsp
+                            response.sendRedirect("index.jsp");
+                    }
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     out.println(ex.toString());
                 }

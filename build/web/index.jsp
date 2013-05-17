@@ -4,6 +4,7 @@
     Author     : Jason
 --%>
 
+<%@page import="captchas.CaptchasDotNet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,6 +19,9 @@
 
     </head>
     <body>
+        <%
+            CaptchasDotNet captchas = new captchas.CaptchasDotNet(request.getSession(true), "demo", "secret");
+        %>
 
         <!--        Sign up Form-->
         <div class="container-fluid topMargin">
@@ -50,50 +54,58 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="modal fade hide" id="myModal">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">×</button>
                 <h3>Please Fill this form</h3>
             </div>
             <form action="myServlet">
-            <div class="modal-body">
-                <div class="container-fluid marginpage">
-                    <div class="row-fluid">
-                        
-                        <input type="hidden" name="page" value="signup">
+                <div class="modal-body">
+                    <div class="container-fluid marginpage">
                         <div class="row-fluid">
-                            <div class="span3">
-                                Username
+
+                            <input type="hidden" name="page" value="signup">
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    Username
+                                </div>
+                                <input type="text" class="" name="username" id="username">
                             </div>
-                            <input type="text" class="" name="username" id="username">
-                        </div>
-                        <div class="row-fluid">
-                            <div class="span3">
-                                Password
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    Password
+                                </div>
+                                <input type="password" class="" name="password" id="password">
                             </div>
-                            <input type="password" class="" name="password" id="password">
-                        </div>
-                        <div class="row-fluid">
-                            <div class="span3">
-                                name
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    name
+                                </div>
+                                <input type="text" class="" name="name" id="name">
                             </div>
-                            <input type="text" class="" name="name" id="name">
-                        </div>
-                        <div class="row-fluid">
-                            <div class="span3">
-                                Email Address
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    Email Address
+                                </div>
+                                <input type="text" class="" name="email" id="email">
                             </div>
-                            <input type="text" class="" name="email" id="email">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <%= captchas.image()%>
+                                </div>
+                                <div class="span4">
+                                     <input type="text" name="captcha" id="captcha" style="width: 100%">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="modal-footer">
-                <input type="submit" class="btn" value="Submit">
-                <input type="button" href="#" class="btn" data-dismiss="modal" value="Cancel">
-            </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn" value="Submit">
+                    <input type="button" href="#" class="btn" data-dismiss="modal" value="Cancel">
+                </div>
             </form>
         </div>
 
