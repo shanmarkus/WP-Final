@@ -1,0 +1,20 @@
+/* 
+    Document   : signup
+    Created on : Apr 11, 2013, 10:36:24 AM
+    Author     : Shan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.marginpage{
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+.headermargin{
+    margin-top:2%;
+}

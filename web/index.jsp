@@ -1,0 +1,106 @@
+<%-- 
+    Document   : index
+    Created on : 10 Apr 13, 20:49:34
+    Author     : Jason
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Login Page</title>
+
+        <!-- CSS -->
+        <link rel="StyleSheet" type="text/css" href="CSS/Bootstrap.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/index.css">
+        <!--        <link rel="StyleSheet" type="text/css" href="CSS/signup.css">-->
+
+    </head>
+    <body>
+
+        <!--        Sign up Form-->
+        <div class="container-fluid topMargin">
+            <div class ="row-fluid">
+                <!-- Adding padding for top -->
+                <div class="span6 offset3">
+                    <div class="span12">
+
+                        <div class="row-fluid loginHeader span6 offset3">
+                            Login
+                        </div>
+
+                        <form action="myServlet" method="post" onsubmit="">
+                            <input type="hidden" name="page" value="login">
+
+                            <div class="row-fluid loginMenu">
+                                <input type="text" class="span6 offset3" name="username" id="username" placeholder="username">
+                            </div>
+
+                            <div class="row-fluid loginMenu">
+                                <input type="password" class="span6 offset3" name="password" id="password" placeholder="password">
+                            </div>
+
+                            <div class="row-fluid loginFooter">
+                                <a class="btn span3 offset3" data-toggle="modal" href="#myModal">Sign Up</a>
+                                <input class ="btn span3 login-button" type="submit" value="Login">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade hide" id="myModal">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>Please Fill this form</h3>
+            </div>
+            <form action="myServlet">
+            <div class="modal-body">
+                <div class="container-fluid marginpage">
+                    <div class="row-fluid">
+                        
+                        <input type="hidden" name="page" value="signup">
+                        <div class="row-fluid">
+                            <div class="span3">
+                                Username
+                            </div>
+                            <input type="text" class="" name="username" id="username">
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span3">
+                                Password
+                            </div>
+                            <input type="password" class="" name="password" id="password">
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span3">
+                                name
+                            </div>
+                            <input type="text" class="" name="name" id="name">
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span3">
+                                Email Address
+                            </div>
+                            <input type="text" class="" name="email" id="email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <input type="submit" class="btn" value="Submit">
+                <input type="button" href="#" class="btn" data-dismiss="modal" value="Cancel">
+            </div>
+            </form>
+        </div>
+
+        <!-- SCRIPT !!!  -->
+        <script type="text/javascript">
+            <jsp:include page="js/jquery.js" />
+            <jsp:include page="js/bootstrap.js" />
+        </script>       
+    </body>
+</html>

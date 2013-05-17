@@ -1,0 +1,38 @@
+/* 
+    Document   : Index
+    Created on : Apr 9, 2013, 5:19:11 PM
+    Author     : Shan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.topMargin{
+    margin-top: 10% !important;
+}
+
+
+.loginHeader{
+    font-size: 20pt;
+    margin-bottom: 2%;
+}
+
+.loginMenu{
+    margin-top: 2%;
+}
+
+.loginFooter{
+
+}
+
+.signupBtn{
+    background-color: transparent;
+    border: none;
+}
+
+.signupBtn:hover{
+    color: aquamarine;
+}
+
+.login-button{
+    margin-left:8px !important;
+}
