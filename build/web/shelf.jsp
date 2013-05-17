@@ -25,7 +25,7 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container" style="width: auto;">
-                    <a class="brand" href="#">Project Name</a>
+                    <a class="brand" href="shelf.jsp">IT Store</a>
                     <ul class="nav" role="navigation">
                         <li class="dropdown">
                             <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
