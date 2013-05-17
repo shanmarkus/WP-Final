@@ -88,5 +88,8 @@
                 }
             %>
         </table>
+        <strong>
+             <a href="index.jsp">Go Back to Login Page</a>
+        </strong>
     </body>
 </html>
