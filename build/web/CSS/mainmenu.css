@@ -1,0 +1,16 @@
+/* 
+    Document   : mainmenu
+    Created on : May 18, 2013, 9:43:13 PM
+    Author     : Shan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.one-third-container{
+    text-align: justify;
+}
+
