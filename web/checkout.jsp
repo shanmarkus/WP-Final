@@ -9,15 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Check out</title>
-
-        <!-- CSS -->
-        <link rel="StyleSheet" type="text/css" href="CSS/Bootstrap.css">
-    </head>
-    <body class="container">
+<%@ include file="header.jsp" %>
         <%
             ArrayList<ProductInCart> productsInCart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
 

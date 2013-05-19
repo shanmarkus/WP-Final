@@ -17,7 +17,7 @@
 
         <!-- CSS -->
         <link rel="StyleSheet" type="text/css" href="CSS/main-nav-bar.css">
-        <link rel="StyleSheet" type="text/css" href="CSS/Bootstrap.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/bootstrap.css">
         <link rel="StyleSheet" type="text/css" href="CSS/shelf.css">
     </head>
     <body class="container">

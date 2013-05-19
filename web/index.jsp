@@ -13,7 +13,7 @@
         <title>Login Page</title>
 
         <!-- CSS -->
-        <link rel="StyleSheet" type="text/css" href="CSS/Bootstrap.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/bootstrap.css">
         <link rel="StyleSheet" type="text/css" href="CSS/index.css">
         <!--        <link rel="StyleSheet" type="text/css" href="CSS/signup.css">-->
 

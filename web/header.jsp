@@ -12,7 +12,7 @@
         <!-- CSS -->
         <link rel="StyleSheet" type="text/css" href="CSS/mainmenu.css">
         <link rel="StyleSheet" type="text/css" href="CSS/main-nav-bar.css">
-        <link rel="StyleSheet" type="text/css" href="CSS/Bootstrap.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/bootstrap.css">
         <link rel="StyleSheet" type="text/css" href="CSS/shelf.css">
     </head>
     <body class="container">
@@ -23,7 +23,7 @@
                     <a class="brand" href="shelf.jsp">IT Store</a>
                     <ul class="nav" role="navigation">
                         <li class="dropdown">
-                            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
+                            <a id="drop1" href="shelf.jsp" role="button" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="http://google.com">Processors</a></li>
                                 <li role="presentation" class="divider"></li>
