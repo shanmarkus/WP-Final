@@ -43,7 +43,9 @@ public class myServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
         try {
+
             if (request.getParameter("page").equals("login")) {
                 try {
                     String name = null;
@@ -87,6 +89,8 @@ public class myServlet extends HttpServlet {
                     out.println(ex.toString());
                 }
 
+            } else if (request.getParameter("page").equals("processors")) {
+                response.sendRedirect("shelf.jsp");
             } else if (request.getParameter(
                     "page").equals("signup")) {
                 try {

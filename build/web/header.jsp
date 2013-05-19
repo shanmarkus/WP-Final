@@ -23,9 +23,13 @@
                     <a class="brand" href="shelf.jsp">IT Store</a>
                     <ul class="nav" role="navigation">
                         <li class="dropdown">
-                            <a id="drop1" href="shelf.jsp" role="button" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
+                            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="http://google.com">Processors</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="processors">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Processors</a></li>
+                                </form>
+                               
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#anotherAction">Mother Board</a></li>
                                 <li role="presentation" class="divider"></li>
@@ -47,23 +51,7 @@
                             </ul>
                         </li>
                     </ul>
-                    
-                    <ul class="nav pull-right">
-                        <li id="fat-menu" class="dropdown">
-                            <div class="row header-margin-top">
-                                <%
-                                    ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-
-                                    out.println("<div class=\"span3\">");
-                                    out.println("Items in cart: " + cart.size());
-                                    out.println("<a href=\"checkout.jsp\">Check out</a>");
-                                    out.println("</div>");
-                                %>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
-
-
             </div>
+
         </div>
