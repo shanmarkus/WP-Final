@@ -80,7 +80,7 @@ public class myServlet extends HttpServlet {
                         } else {
                             session.setAttribute("name", name);
                             session.setAttribute("cart", new ArrayList<ProductInCart>());
-                            response.sendRedirect("shelf.jsp");
+                            response.sendRedirect("mainmenu.jsp");
                         }
                     }
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {

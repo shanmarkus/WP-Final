@@ -8,9 +8,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="header.jsp" %>
-<div id="myCarousel" class="carousel slide">
+
+
+<div id="myCarousel" class="carousel slide" data-interval="3000">
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="0"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
@@ -64,7 +66,7 @@
 
 <!--footer page -->
 <div class="row-fluid">
-    
+
 </div>
 
 <hr>

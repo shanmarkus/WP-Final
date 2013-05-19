@@ -47,7 +47,23 @@
                             </ul>
                         </li>
                     </ul>
-                </div>
-            </div>
+                    
+                    <ul class="nav pull-right">
+                        <li id="fat-menu" class="dropdown">
+                            <div class="row header-margin-top">
+                                <%
+                                    ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
 
+                                    out.println("<div class=\"span3\">");
+                                    out.println("Items in cart: " + cart.size());
+                                    out.println("<a href=\"checkout.jsp\">Check out</a>");
+                                    out.println("</div>");
+                                %>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
         </div>
