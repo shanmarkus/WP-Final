@@ -1,0 +1,29 @@
+/* 
+    Document   : general
+    Created on : May 25, 2013, 3:31:06 PM
+    Author     : Shan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.footer{
+    position: relative;
+    height:60px;   /* Height of the footer */
+    background:transparent;
+}
+
+.marginTop20px{
+    margin-top: 20px;
+}
+
+.marginTop10px{
+    margin-top: 10px;
+}
+
+.marginTop15px{
+    margin-top: 15px;
+}
+
+.clearer{
+    
+}
