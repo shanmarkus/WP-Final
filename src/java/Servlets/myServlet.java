@@ -89,8 +89,23 @@ public class myServlet extends HttpServlet {
                     out.println(ex.toString());
                 }
 
-            } else if (request.getParameter("page").equals("processors")) {
-                response.sendRedirect("shelf.jsp");
+            } 
+            //page categories and sub categories algorithm
+            
+            else if (request.getParameter("page").equals("categories")) {
+                if (request.getParameter("category").equals("hardware")) {
+                    String subcategory = request.getParameter("subcategory");
+
+                    if (subcategory.equals("processor")) {
+                        response.sendRedirect("mainmenu.jsp");
+                    } else {
+                        response.sendRedirect("shelf.jsp");
+                    }
+
+                } else {
+                }
+                               
+                
             } else if (request.getParameter(
                     "page").equals("signup")) {
                 try {

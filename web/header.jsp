@@ -28,22 +28,30 @@
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                                 <!--  Example form for submiting the value -->
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="processors" category="hardware">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="hardware">
+                                    <input type="hidden" name="subcategory" value="processor">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Processors</a></li>
                                 </form>
                                 <li role="presentation" class="divider"></li>
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="motherboard" category="hardware">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="hardware">
+                                    <input type="hidden" name="subcategory" value="motherboard">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Mother Board</a></li>
                                 </form>
                                 <li role="presentation" class="divider"></li>
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="harddisk" category="hardware">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="hardware">
+                                    <input type="hidden" name="subcategory" value="harddisk">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Hard Disk</a></li>
                                 </form>
                                 <li role="presentation" class="divider"></li>
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="vgacard" category="hardware">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="hardware">
+                                    <input type="hidden" name="subcategory" value="vgacard">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Vga Card</a></li>
                                 </form>
                             </ul>
