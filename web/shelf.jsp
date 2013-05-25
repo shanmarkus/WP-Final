@@ -8,7 +8,17 @@
 
 <!--        Main Container-->
 <div class="row">
-    <h4 class="span12">Hello <%= session.getAttribute("name")%>!</h4>
+    <div class="span3">
+        <h4 class="span12">Hello <%= session.getAttribute("name")%>!</h4>
+    </div>
+    <div class="span3 offset6"> 
+        <%
+    ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+    out.println("Items in cart: " + cart.size());
+    out.println("<a href=\"checkout.jsp\">Check out</a>");
+        %> 
+    </div>
+
 </div>
 
 <div>
@@ -43,6 +53,8 @@
             }
         %>
     </div>
+
+
 
 
 

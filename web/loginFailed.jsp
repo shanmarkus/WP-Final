@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Login failed!</h1>
-        Please enter correct username and password or <a href="signUp.jsp">Sign up</a>
+        Please enter correct username and password or Sign Up on our <a href="index.jsp">Main Page</a>
     </body>
 </html>
