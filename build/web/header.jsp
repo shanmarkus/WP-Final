@@ -26,17 +26,26 @@
                         <li class="dropdown">
                             <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                <!--  Example form for submiting the value -->
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="processors">
+                                    <input type="hidden" name="page" value="processors" category="hardware">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Processors</a></li>
                                 </form>
-                               
                                 <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#anotherAction">Mother Board</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="motherboard" category="hardware">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Mother Board</a></li>
+                                </form>
                                 <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hard Disk</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="harddisk" category="hardware">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Hard Disk</a></li>
+                                </form>
                                 <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">VGA Card</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="vgacard" category="hardware">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Vga Card</a></li>
+                                </form>
                             </ul>
                         </li>
                         <li class="dropdown">

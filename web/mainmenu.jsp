@@ -78,16 +78,4 @@
 
 <hr>
 
-<div class="row-fluid">
-    <div class="footer">
-        <h3>This is footer</h3>
-    </div>
-</div>
-
-<!-- Javascript -->
-<script type="text/javascript">
-    <jsp:include page="js/jquery.js" />
-    <jsp:include page="js/bootstrap.js" />
-</script>       
-</body>
-</html>
+<%@ include file="footer.jsp" %>
