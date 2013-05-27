@@ -136,7 +136,7 @@ public class DBManager {
         }
     }
 
-    public Product getProduct(String productID) {
+    public Product getProduct(String productID, String category, String subcategory) {
         Product product = null;
 
         try {
@@ -148,21 +148,23 @@ public class DBManager {
             Statement statement = connection.createStatement();
 
             // Search for the user
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM test;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM test WHERE category='" + category + "' AND subcategory='" + subcategory + "';");
             while (resultSet.next()) {
-                if (productID.equals(resultSet.getString("productID"))) {
+//                if (productID.equals(resultSet.getString("productID")) && category.equals(resultSet.getString("categoryID"))
+//                        && subcategory.equals(resultSet.getString("categoryID"))) {
+//                if (productID.equals(resultSet.getString("productID"))) {
                     String ID = resultSet.getString("productID");
-                    String category = resultSet.getString("category");
-                    String subcategory = resultSet.getString("subcategory");
+                    String categoryID = resultSet.getString("category");
+                    String subcategoryID = resultSet.getString("subcategory");
                     String name = resultSet.getString("name");
                     String description = resultSet.getString("description");
                     Integer stock = Integer.parseInt(resultSet.getString("stock"));
                     Integer price = Integer.parseInt(resultSet.getString("price"));
                     String pictureURL = resultSet.getString("pictureURL");
-                    product = new Product(ID, category, subcategory, name, description, stock, price, pictureURL);
+                    product = new Product(ID, categoryID, subcategoryID, name, description, stock, price, pictureURL);
 
                     break;
-                }
+//                }
             }
 
             // Close connection to database
