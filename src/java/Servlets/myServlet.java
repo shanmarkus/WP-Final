@@ -97,23 +97,22 @@ public class myServlet extends HttpServlet {
                     String subcategory = request.getParameter("subcategory");
                     if (subcategory.equals("processor")) {
                         //find in database that have hardware category and subcategory processors
-//                       ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-                       Product product = new DBManager().getProduct(request.getParameter("productID"), category, subcategory);
-                       out.print(product.getName());
-//                        Boolean exists = false;
-//                        for (ProductInCart p : cart) {
-//                            if (p.getProductID().equals(product.getProductID())) {
-//                                p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
-//                                exists = true;
-//                            }
-//                        }
+                        ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+                        Product product = new DBManager().getProduct(request.getParameter("productID"), category, subcategory);
+                        Boolean exists = false;
+                        for (ProductInCart p : cart) {
+                            if (p.getProductID().equals(product.getProductID())) {
+                                p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
+                                exists = true;
+                            }
+                        }
 
-//                        if (!exists) {
-//                            ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
-//                            cart.add(newProduct);
-//                        }
+                        if (!exists) {
+                            ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
+                            cart.add(newProduct);
+                        }
 
-//                        response.sendRedirect("shelf.jsp");
+                        response.sendRedirect("shelf.jsp");
                     } else if (subcategory.equals("motherboard")) {
                         //find in database that have hardware categery and subcategory motherboard
                     } else if (subcategory.equals("harddisk")) {
