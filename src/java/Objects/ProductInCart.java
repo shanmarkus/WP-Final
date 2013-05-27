@@ -13,8 +13,8 @@ public class ProductInCart extends Product {
 
     private Integer amount;
 
-    public ProductInCart(String productID, String name, String description, Integer stock, Integer price, String pictureURL, Integer amount) {
-        super(productID, name, description, stock, price, pictureURL);
+    public ProductInCart(String productID, String category, String subcategory, String name, String description, Integer stock, Integer price, String pictureURL, Integer amount) {
+        super(productID, category, subcategory, name, description, stock, price, pictureURL);
         this.amount = amount;
     }
 

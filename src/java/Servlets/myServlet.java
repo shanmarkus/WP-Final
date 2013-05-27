@@ -215,7 +215,7 @@ public class myServlet extends HttpServlet {
                 }
 
                 if (!exists) {
-                    ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
+                    ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
                     cart.add(newProduct);
                 }
 

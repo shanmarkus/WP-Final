@@ -16,8 +16,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author
- * Jason
+ * @author Jason
  */
 public class DBManager {
 
@@ -116,15 +115,17 @@ public class DBManager {
 
             // Connect to MySQL
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO products VALUES ( ?, ?, ?, ?, ?, ? );");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO test VALUES ( ?, ?, ?, ?, ?, ?, ?, ?);");
 
             // Add new user
             preparedStatement.setString(1, product.getProductID());
-            preparedStatement.setString(2, product.getName());
-            preparedStatement.setString(3, product.getDescription());
-            preparedStatement.setString(4, product.getStock().toString());
-            preparedStatement.setString(5, product.getPrice().toString());
-            preparedStatement.setString(6, product.getPictureURL());
+            preparedStatement.setString(2, product.getCategory());
+            preparedStatement.setString(3, product.getSubcategory());
+            preparedStatement.setString(4, product.getName());
+            preparedStatement.setString(5, product.getDescription());
+            preparedStatement.setString(6, product.getStock().toString());
+            preparedStatement.setString(7, product.getPrice().toString());
+            preparedStatement.setString(8, product.getPictureURL());
             preparedStatement.executeUpdate();
 
             // Close connection to database
@@ -147,16 +148,18 @@ public class DBManager {
             Statement statement = connection.createStatement();
 
             // Search for the user
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM products;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM test;");
             while (resultSet.next()) {
                 if (productID.equals(resultSet.getString("productID"))) {
                     String ID = resultSet.getString("productID");
+                    String category = resultSet.getString("category");
+                    String subcategory = resultSet.getString("subcategory");
                     String name = resultSet.getString("name");
                     String description = resultSet.getString("description");
                     Integer stock = Integer.parseInt(resultSet.getString("stock"));
                     Integer price = Integer.parseInt(resultSet.getString("price"));
                     String pictureURL = resultSet.getString("pictureURL");
-                    product = new Product(ID, name, description, stock, price, pictureURL);
+                    product = new Product(ID, category, subcategory, name, description, stock, price, pictureURL);
 
                     break;
                 }
@@ -184,15 +187,17 @@ public class DBManager {
             Statement statement = connection.createStatement();
 
             // Search for the user
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM products;");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM test;");
             while (resultSet.next()) {
                 String ID = resultSet.getString("productID");
+                String category = resultSet.getString("category");
+                String subcategory = resultSet.getString("subcategory");
                 String name = resultSet.getString("name");
                 String description = resultSet.getString("description");
                 Integer stock = Integer.parseInt(resultSet.getString("stock"));
                 Integer price = Integer.parseInt(resultSet.getString("price"));
                 String pictureURL = resultSet.getString("pictureURL");
-                products.add(new Product(ID, name, description, stock, price, pictureURL));
+                products.add(new Product(ID, category, subcategory, name, description, stock, price, pictureURL));
             }
 
             // Close connection to database
