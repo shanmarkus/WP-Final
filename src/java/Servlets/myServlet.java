@@ -93,16 +93,22 @@ public class myServlet extends HttpServlet {
             //page categories and sub categories algorithm
             
             else if (request.getParameter("page").equals("categories")) {
-                if (request.getParameter("category").equals("hardware")) {
+                
+                String category = request.getParameter("category");
+                if (category.equals("hardware")) {
                     String subcategory = request.getParameter("subcategory");
 
                     if (subcategory.equals("processor")) {
-                        response.sendRedirect("mainmenu.jsp");
-                    } else {
-                        response.sendRedirect("shelf.jsp");
+                        //find in database that have hardware category and subcategory processors
+                    } else if(subcategory.equals("motherboard")) {
+                        //find in database that have hardware categery and subcategory motherboard
+                    } else if(subcategory.equals("harddisk")) {
+                        //find in database that have hardware category and subcategory harddisk 
+                    } else if(subcategory.equals("vgacard")){
+                        //find in database that have hardware category and subcategory vga card
                     }
 
-                } else {
+                } else if(category.equals("software")) {
                 }
                                
                 

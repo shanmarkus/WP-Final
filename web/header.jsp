@@ -59,13 +59,33 @@
                         <li class="dropdown">
                             <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Software <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Game</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="software">
+                                    <input type="hidden" name="subcategory" value="game">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Game</a></li>
+                                </form>
                                 <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Video and Photo</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="software">
+                                    <input type="hidden" name="subcategory" value="videophoto">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Video and Photo</a></li>
+                                </form>
                                 <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Anti virus</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="software">
+                                    <input type="hidden" name="subcategory" value="antivirus">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Anti Virus</a></li>
+                                </form>
                                 <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Others</a></li>
+                                <form action="myServlet" method="post">
+                                    <input type="hidden" name="page" value="categories">
+                                    <input type="hidden" name="category" value="software">
+                                    <input type="hidden" name="subcategory" value="other">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Other</a></li>
+                                </form>
                             </ul>
                         </li>
                     </ul>
