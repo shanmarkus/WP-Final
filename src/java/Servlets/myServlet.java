@@ -104,10 +104,19 @@ public class myServlet extends HttpServlet {
                         
                     } else if (subcategory.equals("motherboard")) {
                         //find in database that have hardware categery and subcategory motherboard
+                        session.setAttribute("category", category);
+                        session.setAttribute("subcategory", subcategory);
+                        response.sendRedirect("shelf.jsp");
                     } else if (subcategory.equals("harddisk")) {
                         //find in database that have hardware category and subcategory harddisk 
+                        session.setAttribute("category", category);
+                        session.setAttribute("subcategory", subcategory);
+                        response.sendRedirect("shelf.jsp");
                     } else if (subcategory.equals("vgacard")) {
                         //find in database that have hardware category and subcategory vga card
+                        session.setAttribute("category", category);
+                        session.setAttribute("subcategory", subcategory);
+                        response.sendRedirect("shelf.jsp");
                     } else {
                         response.sendRedirect("shelf.jsp");
                     }
@@ -221,26 +230,26 @@ public class myServlet extends HttpServlet {
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     out.println(ex.toString());
                 }
-            } //            else if (request.getParameter(
-            //                    "page").equals("buy")) {
-            //                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-            //                Product product = new DBManager().getProduct(request.getParameter("productID"));
-            //
-            //                Boolean exists = false;
-            //                for (ProductInCart p : cart) {
-            //                    if (p.getProductID().equals(product.getProductID())) {
-            //                        p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
-            //                        exists = true;
-            //                    }
-            //                }
-            //
-            //                if (!exists) {
-            //                    ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
-            //                    cart.add(newProduct);
-            //                }
-            //
-            //                response.sendRedirect("shelf.jsp");
-            //            } 
+            }             else if (request.getParameter(
+                                "page").equals("buy")) {
+                            ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+                            Product product = new DBManager().getProduct(request.getParameter("productID"));
+            
+                            Boolean exists = false;
+                            for (ProductInCart p : cart) {
+                                if (p.getProductID().equals(product.getProductID())) {
+                                    p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
+                                    exists = true;
+                                }
+                            }
+            
+                            if (!exists) {
+                                ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
+                                cart.add(newProduct);
+                            }
+            
+                            response.sendRedirect("shelf.jsp");
+                        } 
             else if (request.getParameter(
                     "page").equals("delete")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");

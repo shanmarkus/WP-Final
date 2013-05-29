@@ -25,9 +25,7 @@
     <div class="span12 marginTop">
         <%
             String category = (session.getAttribute("category").toString());
-            String subcategory = (session.getAttribute("subcategory").toString());
-            out.println(category);
-            out.println(subcategory);
+            String subcategory = (session.getAttribute("subcategory").toString());            
 //            ArrayList<Product> products = new DBManager().getAllProducts();
             ArrayList<Product> products = new DBManager().getAllSpesificProducts(category,subcategory);
 
