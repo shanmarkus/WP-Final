@@ -32,6 +32,12 @@
 </thead>
 <tbody>
     <%
+        //delete all product
+            out.println("<form action=\"myServlet\" method=\"POST\">");
+            out.println("<input type=\"hidden\" name=\"page\" value=\"deleteall\">");
+            out.println("<input type=\"submit\" class=\"span2\" value=\"Delete All\">");
+            out.println("</form>");
+            
         for (ProductInCart p : productsInCart) {
             out.println("<tr>");
             out.println("<td><img src=\"" + p.getPictureURL() + "\" class=\"span3\" style=\"height: 25%\" !important></td>");
@@ -41,11 +47,13 @@
             out.println("<td>" + p.getAmount() + "</td>");
             out.println("<td>" + p.getAmount() * p.getPrice() + "</td>");
             out.println("<td>");
+            //delete per product
             out.println("<form action=\"myServlet\" method=\"POST\">");
             out.println("<input type=\"hidden\" name=\"productID\" value=\"" + p.getProductID() + "\">");
             out.println("<input type=\"hidden\" name=\"page\" value=\"delete\">");
             out.println("<input type=\"submit\" class=\"span2\" value=\"Delete\">");
             out.println("</form>");
+            //edit amount
             out.println("<form action=\"myServlet\" method=\"POST\">");
             out.println("<input type=\"hidden\" name=\"productID\" value=\"" + p.getProductID() + "\">");
             out.println("<input type=\"hidden\" name=\"page\" value=\"editamount\">");
