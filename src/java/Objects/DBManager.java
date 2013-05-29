@@ -136,9 +136,9 @@ public class DBManager {
         }
     }
 
-    public Product getProduct(String productID, String category, String subcategory) {
+    public Product getProduct(String category, String subcategory) {
         Product product = null;
-
+       
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -150,9 +150,7 @@ public class DBManager {
             // Search for the user
             ResultSet resultSet = statement.executeQuery("SELECT * FROM test WHERE category='" + category + "' AND subcategory='" + subcategory + "';");
             while (resultSet.next()) {
-//                if (productID.equals(resultSet.getString("productID")) && category.equals(resultSet.getString("categoryID"))
-//                        && subcategory.equals(resultSet.getString("categoryID"))) {
-                if (productID.equals(resultSet.getString("productID"))) {
+                
                     String ID = resultSet.getString("productID");
                     String categoryID = resultSet.getString("category");
                     String subcategoryID = resultSet.getString("subcategory");
@@ -161,12 +159,11 @@ public class DBManager {
                     Integer stock = Integer.parseInt(resultSet.getString("stock"));
                     Integer price = Integer.parseInt(resultSet.getString("price"));
                     String pictureURL = resultSet.getString("pictureURL");
+                
                     product = new Product(ID, categoryID, subcategoryID, name, description, stock, price, pictureURL);
-
-//                    break;
-               }
+                    break;
+               
             }
-
             // Close connection to database
             statement.close();
             connection.close();
@@ -211,4 +208,44 @@ public class DBManager {
 
         return products;
     }
+    
+    public ArrayList<Product> getAllSpesificProducts(String category, String subcategory) {
+        ArrayList<Product> products = new ArrayList<>();
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM test WHERE category='" + category + "' AND subcategory='" + subcategory + "';");
+            while (resultSet.next()) {
+                String ID = resultSet.getString("productID");
+                String tempcategory = resultSet.getString("category");
+                String tempsubcategory = resultSet.getString("subcategory");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                Integer stock = Integer.parseInt(resultSet.getString("stock"));
+                Integer price = Integer.parseInt(resultSet.getString("price"));
+                String pictureURL = resultSet.getString("pictureURL");
+                products.add(new Product(ID, tempcategory, tempsubcategory, name, description, stock, price, pictureURL));
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return products;
+    }
+    
+    
 }
+
+
+
