@@ -33,11 +33,11 @@
 <tbody>
     <%
         //delete all product
-            out.println("<form action=\"myServlet\" method=\"POST\">");
-            out.println("<input type=\"hidden\" name=\"page\" value=\"deleteall\">");
-            out.println("<input type=\"submit\" class=\"span2\" value=\"Delete All\">");
-            out.println("</form>");
-            
+        out.println("<form action=\"myServlet\" method=\"POST\">");
+        out.println("<input type=\"hidden\" name=\"page\" value=\"deleteall\">");
+        out.println("<input type=\"submit\" class=\"span2\" value=\"Delete All\">");
+        out.println("</form>");
+
         for (ProductInCart p : productsInCart) {
             out.println("<tr>");
             out.println("<td><img src=\"" + p.getPictureURL() + "\" class=\"span3\" style=\"height: 25%\" !important></td>");
@@ -70,9 +70,14 @@
 </table>
 
 <%
+        out.println("<form action=\"myServlet\" method=\"POST\">");
+        out.println("<input type=\"hidden\" name=\"page\" value=\"confirm\">");
+        out.println("<input type=\"submit\" class=\"span2\" value=\"Confirm Order\">");
+        out.println("</form>");
     }
 %>
 
 <a href="shelf.jsp">Back to shelf</a>
-</body>
-</html>
+<br>
+
+<%@ include file="footer.jsp" %>
