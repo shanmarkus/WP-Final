@@ -105,19 +105,19 @@ public class myServlet extends HttpServlet {
                         out.print(product.getName());
                         out.print(product.getStock());
 
-                        for (ProductInCart p : cart) {
-                            product.getName();
-                            product.getStock();
-                            if (p.getProductID().equals(product.getProductID())) {
-                                p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
-                                exists = true;
-                            }
-                        }
-
-                        if (!exists) {
-                            ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
-                            cart.add(newProduct);
-                        }
+//                        for (ProductInCart p : cart) {
+//                            product.getName();
+//                            product.getStock();
+//                            if (p.getProductID().equals(product.getProductID())) {
+//                                p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
+//                                exists = true;
+//                            }
+//                        }
+//
+//                        if (!exists) {
+//                            ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
+//                            cart.add(newProduct);
+//                        }
 
                         response.sendRedirect("shelf.jsp");
                     } else if (subcategory.equals("motherboard")) {

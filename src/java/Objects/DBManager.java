@@ -152,7 +152,7 @@ public class DBManager {
             while (resultSet.next()) {
 //                if (productID.equals(resultSet.getString("productID")) && category.equals(resultSet.getString("categoryID"))
 //                        && subcategory.equals(resultSet.getString("categoryID"))) {
-//                if (productID.equals(resultSet.getString("productID"))) {
+                if (productID.equals(resultSet.getString("productID"))) {
                     String ID = resultSet.getString("productID");
                     String categoryID = resultSet.getString("category");
                     String subcategoryID = resultSet.getString("subcategory");
@@ -164,7 +164,7 @@ public class DBManager {
                     product = new Product(ID, categoryID, subcategoryID, name, description, stock, price, pictureURL);
 
 //                    break;
-//               }
+               }
             }
 
             // Close connection to database
