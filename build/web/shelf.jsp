@@ -24,7 +24,12 @@
 <div>
     <div class="span12 marginTop">
         <%
-            ArrayList<Product> products = new DBManager().getAllProducts();
+            String category = (session.getAttribute("category").toString());
+            String subcategory = (session.getAttribute("subcategory").toString());
+            out.println(category);
+            out.println(subcategory);
+//            ArrayList<Product> products = new DBManager().getAllProducts();
+            ArrayList<Product> products = new DBManager().getAllSpesificProducts(category,subcategory);
 
             for (Product p : products) {
                 out.println("<div class=\"row\">");

@@ -91,13 +91,17 @@ public class myServlet extends HttpServlet {
 
             } //page categories and sub categories algorithm
             else if (request.getParameter("page").equals("categories")) {
-                // String subcategory = request.getParameter("subcategory");
+                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+                HttpSession session = request.getSession();
                 String category = request.getParameter("category");
+
                 if (category.equals("hardware")) {
                     String subcategory = request.getParameter("subcategory");
                     if (subcategory.equals("processor")) {
-                        ArrayList<Product> product = new DBManager().getAllSpesificProducts(category, subcategory);
-                        out.print(product.size());
+                        session.setAttribute("category", category);
+                        session.setAttribute("subcategory", subcategory);
+                        response.sendRedirect("shelf.jsp");
+                        
                     } else if (subcategory.equals("motherboard")) {
                         //find in database that have hardware categery and subcategory motherboard
                     } else if (subcategory.equals("harddisk")) {
