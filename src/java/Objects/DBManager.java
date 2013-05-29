@@ -163,8 +163,8 @@ public class DBManager {
                     String pictureURL = resultSet.getString("pictureURL");
                     product = new Product(ID, categoryID, subcategoryID, name, description, stock, price, pictureURL);
 
-                    break;
-//                }
+//                    break;
+//               }
             }
 
             // Close connection to database

@@ -53,7 +53,7 @@ public class myServlet extends HttpServlet {
                     // Load the driver
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                    // Connect to MySQL
+                    // Connect to MySQL localhot sexy beybeh
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
                     Statement statement = connection.createStatement();
 
@@ -91,16 +91,23 @@ public class myServlet extends HttpServlet {
 
             } //page categories and sub categories algorithm
             else if (request.getParameter("page").equals("categories")) {
-               // String subcategory = request.getParameter("subcategory");
+                // String subcategory = request.getParameter("subcategory");
                 String category = request.getParameter("category");
                 if (category.equals("hardware")) {
                     String subcategory = request.getParameter("subcategory");
                     if (subcategory.equals("processor")) {
+                       
                         //find in database that have hardware category and subcategory processors
                         ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
                         Product product = new DBManager().getProduct(request.getParameter("productID"), category, subcategory);
                         Boolean exists = false;
+                        out.print(cart.size());
+                        out.print(product.getName());
+                        out.print(product.getStock());
+
                         for (ProductInCart p : cart) {
+                            product.getName();
+                            product.getStock();
                             if (p.getProductID().equals(product.getProductID())) {
                                 p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
                                 exists = true;
@@ -119,6 +126,8 @@ public class myServlet extends HttpServlet {
                         //find in database that have hardware category and subcategory harddisk 
                     } else if (subcategory.equals("vgacard")) {
                         //find in database that have hardware category and subcategory vga card
+                    } else {
+                        response.sendRedirect("shelf.jsp");
                     }
 
                 } else if (category.equals("software")) {
@@ -230,27 +239,26 @@ public class myServlet extends HttpServlet {
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     out.println(ex.toString());
                 }
-            } 
-//            else if (request.getParameter(
-//                    "page").equals("buy")) {
-//                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-//                Product product = new DBManager().getProduct(request.getParameter("productID"));
-//
-//                Boolean exists = false;
-//                for (ProductInCart p : cart) {
-//                    if (p.getProductID().equals(product.getProductID())) {
-//                        p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
-//                        exists = true;
-//                    }
-//                }
-//
-//                if (!exists) {
-//                    ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
-//                    cart.add(newProduct);
-//                }
-//
-//                response.sendRedirect("shelf.jsp");
-//            } 
+            } //            else if (request.getParameter(
+            //                    "page").equals("buy")) {
+            //                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+            //                Product product = new DBManager().getProduct(request.getParameter("productID"));
+            //
+            //                Boolean exists = false;
+            //                for (ProductInCart p : cart) {
+            //                    if (p.getProductID().equals(product.getProductID())) {
+            //                        p.setAmount(p.getAmount() + Integer.parseInt(request.getParameter("amount")));
+            //                        exists = true;
+            //                    }
+            //                }
+            //
+            //                if (!exists) {
+            //                    ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
+            //                    cart.add(newProduct);
+            //                }
+            //
+            //                response.sendRedirect("shelf.jsp");
+            //            } 
             else if (request.getParameter(
                     "page").equals("delete")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
