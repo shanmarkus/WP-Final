@@ -23,7 +23,7 @@
                 <div class="container" style="width: auto;">
                     <a class="brand" href="shelf.jsp">IT Store</a>
                     <ul class="nav" role="navigation">
-                        <li class="dropdown">
+                        <li class="dropdown pull-left">
                             <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                                 <!--  Example form for submiting the value -->
@@ -56,7 +56,7 @@
                                 </form>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown pull-left">
                             <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Software <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
                                 <form action="myServlet" method="post">
@@ -87,6 +87,12 @@
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Other</a></li>
                                 </form>
                             </ul>
+                        </li>
+                        <!--                        Search Box-->
+                        <li class="pull-right">
+                            <form class="navbar-search">
+                                <input type="text" class="search-query" placeholder="Search">
+                            </form>
                         </li>
                     </ul>
                 </div>
