@@ -90,9 +90,9 @@
                         </li>
                         <!--                        Search Box-->
                         <li class="pull-right">
-                            <form class="navbar-search">
+                            <form class="navbar-search" action="myServlet" method="post">
                                 <input type="hidden" name="page" value="searchbar">
-                                <input type="text" class="search-query" placeholder="Search">
+                                <input type="text" class="search-query" placeholder="Search" name="search" value="search">
                             </form>
                         </li>
                     </ul>

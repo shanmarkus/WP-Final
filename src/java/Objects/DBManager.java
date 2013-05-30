@@ -209,6 +209,41 @@ public class DBManager {
 
         return products;
     }
+    
+    public ArrayList<Product> searchSpesificProducts(String itemdescription){
+         ArrayList<Product> products = new ArrayList<>();
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM test WHERE name LIKE ='" + itemdescription + ";");
+            while (resultSet.next()) {
+                String ID = resultSet.getString("productID");
+                String tempcategory = resultSet.getString("category");
+                String tempsubcategory = resultSet.getString("subcategory");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                Integer stock = Integer.parseInt(resultSet.getString("stock"));
+                Integer price = Integer.parseInt(resultSet.getString("price"));
+                String pictureURL = resultSet.getString("pictureURL");
+                products.add(new Product(ID, tempcategory, tempsubcategory, name, description, stock, price, pictureURL));
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return products;
+    }
 
     public ArrayList<Product> getAllSpesificProducts(String category, String subcategory) {
         ArrayList<Product> products = new ArrayList<>();
