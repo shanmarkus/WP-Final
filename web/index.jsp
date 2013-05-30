@@ -86,6 +86,12 @@
                             </div>
                             <div class="row-fluid">
                                 <div class="span3">
+                                    Address
+                                </div>
+                                <input type="text" class="" name="address" id="address">
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span3">
                                     Email Address
                                 </div>
                                 <input type="text" class="" name="email" id="email">

@@ -92,7 +92,8 @@ public class DBManager {
                     String password = resultSet.getString("password");
                     String name = resultSet.getString("name");
                     String email = resultSet.getString("email");
-                    user = new User(ID, role, username, password, name, email);
+                    String address = resultSet.getString("address");
+                    user = new User(ID, role, username, password, name, address, email);
 
                     break;
                 }
@@ -129,7 +130,8 @@ public class DBManager {
                     String password = resultSet.getString("password");
                     String name = resultSet.getString("name");
                     String email = resultSet.getString("email");
-                    user = new User(ID, role, username, password, name, email);
+                    String address = resultSet.getString("address");
+                    user = new User(ID, role, username, password, name, address, email);
 
 //                    break;
 //                }

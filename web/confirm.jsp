@@ -9,15 +9,41 @@
 <%@ include file="header.jsp" %>
 <%
     String userID = session.getAttribute("name").toString();
-    out.println(userID);
     User user = new DBManager().getLoginUser(userID);
-    user.getName();
-    out.println(user.getName());
-    out.println(user.getEmail());
-    user.getEmail();
 %>
 
-        <h1>Hello World!</h1>
-        
-        
+<div class="row">
+    <h3>Would like us to send to this address</h3>
+</div>
+
+<div class="row">
+    <div class="span3">
+        Name:
+    </div>
+    <div class="span10">
+        <%=user.getName()%>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span3">
+        Address:
+    </div>
+    <div class="span10">
+        <%=user.getAddress()%>
+    </div>
+</div>
+    
+<div class="row">
+    <div class="span3">
+        Email::
+    </div>
+    <div class="span10">
+        <%=user.getEmail()%>
+    </div>
+</div>
+
+
+
+
 <%@ include file="footer.jsp" %>

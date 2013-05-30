@@ -167,14 +167,15 @@ public class myServlet extends HttpServlet {
 
                             // Connect to MySQL
                             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, email) VALUES ( ?, ?, ?, ?, ? );");
+                            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, address, email) VALUES ( ?, ?, ?, ?, ?, ? );");
 
                             // Add new user
                             preparedStatement.setString(1, "user");
                             preparedStatement.setString(2, request.getParameter("username"));
                             preparedStatement.setString(3, request.getParameter("password"));
                             preparedStatement.setString(4, request.getParameter("name"));
-                            preparedStatement.setString(5, request.getParameter("email"));
+                            preparedStatement.setString(5, request.getParameter("address"));
+                            preparedStatement.setString(6, request.getParameter("email"));
                             preparedStatement.executeUpdate();
 
                             // Close connection to database
