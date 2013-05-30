@@ -54,15 +54,7 @@
         %>
     </tbody>
 </table>
-<%
-    for (ProductInCart p : productsInCart) {
-        Integer temp = p.getAmount() * p.getPrice();
-        Integer sum = 0;
-        Integer total = sum + temp;
-        temp = sum;
-        out.print(total);
-    }
-%>
+
 
 <div class="row">
     <h3>Would like us to send to this address</h3>
