@@ -272,17 +272,16 @@ public class myServlet extends HttpServlet {
                 //If costumer already finished their buy then send to confirm.jsp
             } else if (request.getParameter(
                     "page").equals("confirm")) {
-//                ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-
-
                 response.sendRedirect("confirm.jsp");
 
                 //Search bar function
             } else if (request.getParameter(
                     "page").equals("searchbar")) {
-
-
-                response.sendRedirect("searchResult.jsp");
+               HttpSession session = request.getSession();
+               String search = request.getParameter("search");
+               session.setAttribute("search", search);
+               response.sendRedirect("searchResult.jsp");
+               
             } else if (request.getParameter(
                     "page").equals("editamount")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");

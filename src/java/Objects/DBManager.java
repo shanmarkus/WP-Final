@@ -222,7 +222,7 @@ public class DBManager {
             Statement statement = connection.createStatement();
 
             // Search for the user
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM test WHERE name LIKE ='" + itemdescription + ";");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM test WHERE name LIKE '" + itemdescription + "';");
             while (resultSet.next()) {
                 String ID = resultSet.getString("productID");
                 String tempcategory = resultSet.getString("category");
