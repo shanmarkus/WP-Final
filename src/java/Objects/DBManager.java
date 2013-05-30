@@ -108,6 +108,43 @@ public class DBManager {
         return user;
     }
 
+     public User getLoginUser(String userID) {
+        User user = null;
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE category='" + userID + "';");
+            while (resultSet.next()) {
+                if (userID.equals(resultSet.getString("userID"))) {
+                    String ID = resultSet.getString("userID");
+                    String role = resultSet.getString("role");
+                    String username = resultSet.getString("username");
+                    String password = resultSet.getString("password");
+                    String name = resultSet.getString("name");
+                    String email = resultSet.getString("email");
+                    user = new User(ID, role, username, password, name, email);
+
+                    break;
+                }
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return user;
+    }
+    
     public void addProduct(Product product) {
         try {
             // Load the driver

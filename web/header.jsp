@@ -1,6 +1,7 @@
 <%@page import="Objects.ProductInCart"%>
 <%@page import="Objects.DBManager"%>
 <%@page import="Objects.Product"%>
+<%@page import="Objects.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -9,7 +9,7 @@
 <!--        Main Container-->
 <div class="row">
     <div class="span3">
-        <h4 class="span12">Hello <%= session.getAttribute("name")%>!</h4>
+        <h4 class="span12">Search Result</h4>
     </div>
     <div class="span3 offset6"> 
         <%

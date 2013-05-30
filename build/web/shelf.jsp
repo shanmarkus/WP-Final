@@ -25,10 +25,12 @@
     <div class="span12 marginTop">
         <%
             String category = (session.getAttribute("category").toString());
-            String subcategory = (session.getAttribute("subcategory").toString());            
+            String subcategory = (session.getAttribute("subcategory").toString());   
+            out.println(category);
+            out.println(subcategory);
 //            ArrayList<Product> products = new DBManager().getAllProducts();
             ArrayList<Product> products = new DBManager().getAllSpesificProducts(category,subcategory);
-
+            out.println(products.size());
             for (Product p : products) {
                 out.println("<div class=\"row\">");
                     out.println("<div class=\"accordion\" id=\"accordion2\">");
