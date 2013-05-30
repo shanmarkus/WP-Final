@@ -31,6 +31,48 @@
 
             for (Product p : products) {
                 out.println("<div class=\"row\">");
+                    out.println("<div class=\"accordion\" id=\"accordion2\">");
+                        out.println("<div class=\"accordion-group\">");
+                            out.println("<div class=\"accordion-heading\">");
+                                out.println("<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapseOne\">");
+                                out.print(p.getName());
+                                out.print("</a>");
+                            out.println("</div>");
+                            //accordion body
+                            out.println("<div id=\"collapseOne\" class=\"accordion-body collapse in\">");
+                                out.println("<div class=\"accordion-inner\">");
+                                out.println("<div class=\row\">");
+                                
+                                   out.println("<div class=\"span3\">");
+                                   out.println("<img src=\"" + p.getPictureURL() + "\" height=\"20%\">");
+                                   out.println("</div>");
+                                   
+                                   out.println("<div class=\"span3 offset1\">");
+                                   out.println("<div class=\"row\">");
+                                   out.println("Description: " + p.getDescription() + "<br />");
+                                   out.println("Price: " + p.getPrice());
+                                   out.println("</div>");
+                                   out.println("</div>");
+                                   
+                                   out.println("<div class=\"span4\">");
+                                   out.println("<form action=\"myServlet\" method=\"POST\">");
+                                   out.println("<input type=\"hidden\" name=\"productID\" value=\"" + p.getProductID() + "\">");
+                                   out.println("<input type=\"hidden\" name=\"page\" value=\"buy\">");
+                                   out.println("<div class=\"input-append\">");
+                                   out.println("<input type=\"text\" name=\"amount\" class=\"input-medium\">");
+                                   out.println("<input type=\"submit\" class=\"btn\" value=\"Buy\">");
+                                   out.println("</div>");
+                                   out.println("</form>");
+                                   out.println("</div>");
+                                   
+                                out.println("</div>");
+                                out.println("</div>");
+                            out.println("</div>");
+                        out.println("</div>");
+                    out.println("</div>");
+                out.println("</div>");
+                
+                out.println("<div class=\"row\">");
                 //picture div
                 out.println("<div class=\"span3\">");
                 out.println("<img src=\"" + p.getPictureURL() + "\" height=\"20%\">");
