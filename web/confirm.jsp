@@ -8,8 +8,60 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 <%
+    ArrayList<ProductInCart> productsInCart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+    out.println(productsInCart.size());
     String userID = session.getAttribute("name").toString();
     User user = new DBManager().getLoginUser(userID);
+%>
+<div class="row">
+    <h3>This is Your List of Order(s)</h3>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+
+
+
+            for (ProductInCart p : productsInCart) {
+
+                Integer temp = p.getAmount() * p.getPrice();
+                out.println("<tr>");
+                out.println("<td>");
+                out.println(p.getName());
+                out.println("</td>");
+                out.println("<td>");
+                out.println(p.getAmount());
+                out.println("</td>");
+                out.println("<td>");
+                out.println(p.getPrice());
+                out.println("</td>");
+                out.println("<td>");
+                out.println(temp);
+                out.println("</td>");
+                out.println("</tr>");
+
+            }
+
+        %>
+    </tbody>
+</table>
+<%
+    for (ProductInCart p : productsInCart) {
+        Integer temp = p.getAmount() * p.getPrice();
+        Integer sum = 0;
+        Integer total = sum + temp;
+        temp = sum;
+        out.print(total);
+    }
 %>
 
 <div class="row">
@@ -17,28 +69,28 @@
 </div>
 
 <div class="row">
-    <div class="span3">
+    <div class="span1">
         Name:
     </div>
-    <div class="span10">
+    <div class="span6">
         <%=user.getName()%>
     </div>
 </div>
 
 <div class="row">
-    <div class="span3">
+    <div class="span1">
         Address:
     </div>
-    <div class="span10">
+    <div class="span6">
         <%=user.getAddress()%>
     </div>
 </div>
-    
+
 <div class="row">
-    <div class="span3">
+    <div class="span1">
         Email::
     </div>
-    <div class="span10">
+    <div class="span6">
         <%=user.getEmail()%>
     </div>
 </div>
