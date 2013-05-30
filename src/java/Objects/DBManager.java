@@ -120,9 +120,9 @@ public class DBManager {
             Statement statement = connection.createStatement();
 
             // Search for the user
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE category='" + userID + "';");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE name='" + userID + "';");
             while (resultSet.next()) {
-                if (userID.equals(resultSet.getString("userID"))) {
+//                if (userID.equals(resultSet.getString("userID"))) {
                     String ID = resultSet.getString("userID");
                     String role = resultSet.getString("role");
                     String username = resultSet.getString("username");
@@ -131,8 +131,8 @@ public class DBManager {
                     String email = resultSet.getString("email");
                     user = new User(ID, role, username, password, name, email);
 
-                    break;
-                }
+//                    break;
+//                }
             }
 
             // Close connection to database
