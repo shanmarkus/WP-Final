@@ -91,6 +91,7 @@
                         <!--                        Search Box-->
                         <li class="pull-right">
                             <form class="navbar-search">
+                                <input type="hidden" name="page" value="searchbar">
                                 <input type="text" class="search-query" placeholder="Search">
                             </form>
                         </li>
