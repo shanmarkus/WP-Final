@@ -20,6 +20,26 @@ import java.util.logging.Logger;
  */
 public class DBManager {
 
+    public void deleteUser(String username) {
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Delete user
+            statement.execute("DELETE FROM users WHERE username = '" + username + "';");
+
+            // Close connection to database
+
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public ArrayList<User> getAllUser() {
         ArrayList<User> users = new ArrayList<>();
 

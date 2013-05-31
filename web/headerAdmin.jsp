@@ -9,6 +9,9 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Objects.User"%>
+<%@page import="Objects.DBManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -46,7 +49,7 @@
                     <a class="brand" href="shelf.jsp">IT Store</a>
                     <ul class="nav" role="navigation">
                         <li class="dropdown pull-left">
-                            <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Admin Menu <b class="caret"></b></a>
+                            <a id="drop1" href="admin.jsp" role="button" class="dropdown-toggle" data-toggle="dropdown">Admin Menu <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                                 <!--  Example form for submiting the value -->
                                 <form action="myServlet" method="post">

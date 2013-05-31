@@ -210,6 +210,20 @@ public class myServlet extends HttpServlet {
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     out.println(ex.toString());
                 }
+                
+                //admin stock
+            } else if (request.getParameter("page").equals("adminstock")) {
+                
+                    if (request.getParameter("command").equals("delete")) {
+                        
+                       new DBManager().deleteUser(request.getParameter("productID"));
+                       response.sendRedirect("adminStock.jsp");
+                        
+                    } else {
+                        request.getSession(false).setAttribute("username", request.getParameter("username"));
+                        response.sendRedirect("editStock.jsp");
+                    
+                } 
             } else if (request.getParameter("page").equals("editUser")) {
                 try {
                     // Load the driver
@@ -232,6 +246,15 @@ public class myServlet extends HttpServlet {
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     out.println(ex.toString());
                 }
+            } else if (request.getParameter("page").equals("admin")) {
+                HttpSession session = request.getSession();
+                String action = request.getParameter("action");
+
+                if (action.equals("stocksytem")) {
+                } else if (action.equals("usersetting")) {
+                } else {
+                }
+
             } else if (request.getParameter(
                     "page").equals("buy")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
@@ -279,11 +302,11 @@ public class myServlet extends HttpServlet {
                 //Search bar function
             } else if (request.getParameter(
                     "page").equals("searchbar")) {
-               HttpSession session = request.getSession();
-               String search = request.getParameter("search");
-               session.setAttribute("search", search);
-               response.sendRedirect("searchResult.jsp");
-               
+                HttpSession session = request.getSession();
+                String search = request.getParameter("search");
+                session.setAttribute("search", search);
+                response.sendRedirect("searchResult.jsp");
+
             } else if (request.getParameter(
                     "page").equals("editamount")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
