@@ -27,6 +27,10 @@
                     <td><input type="text" name="name" style="width: 100%"></td>
                 </tr>
                 <tr>
+                    <td>Address</td>
+                    <td><input type="text" name="address" style="width: 100%"></td>
+                </tr>
+                <tr>
                     <td>Email:</td>
                     <td><input type="text" name="email" style="width: 100%"></td>
                 </tr>

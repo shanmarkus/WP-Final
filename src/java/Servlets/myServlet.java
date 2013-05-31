@@ -217,13 +217,14 @@ public class myServlet extends HttpServlet {
 
                     // Connect to MySQL
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET password=?, name=?, email=? WHERE username=?;");
+                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET password=?, name=?, address=?, email=? WHERE username=?;");
 
                     // Update the data
                     preparedStatement.setString(1, request.getParameter("password"));
                     preparedStatement.setString(2, request.getParameter("name"));
                     preparedStatement.setString(3, request.getParameter("email"));
-                    preparedStatement.setString(4, request.getSession(false).getAttribute("username").toString());
+                    preparedStatement.setString(4, request.getParameter("email"));
+                    preparedStatement.setString(5, request.getSession(false).getAttribute("username").toString());
                     preparedStatement.executeUpdate();
 
                     // Redirect to admin.jsp
