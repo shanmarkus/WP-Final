@@ -20,6 +20,40 @@ import java.util.logging.Logger;
  */
 public class DBManager {
 
+    public ArrayList<User> getAllUser() {
+        ArrayList<User> users = new ArrayList<>();
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users;");
+            while (resultSet.next()) {
+                String ID = resultSet.getString("userID");
+                String role = resultSet.getString("role");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                String email = resultSet.getString("email");
+                users.add(new User(ID, role, username, password, name, address, email));
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return users;
+    }
+
     public Boolean checkUser(String username, String password) {
         Boolean result = false;
 
@@ -109,7 +143,7 @@ public class DBManager {
         return user;
     }
 
-     public User getLoginUser(String userID) {
+    public User getLoginUser(String userID) {
         User user = null;
 
         try {
@@ -124,14 +158,14 @@ public class DBManager {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE name='" + userID + "';");
             while (resultSet.next()) {
 //                if (userID.equals(resultSet.getString("userID"))) {
-                    String ID = resultSet.getString("userID");
-                    String role = resultSet.getString("role");
-                    String username = resultSet.getString("username");
-                    String password = resultSet.getString("password");
-                    String name = resultSet.getString("name");
-                    String email = resultSet.getString("email");
-                    String address = resultSet.getString("address");
-                    user = new User(ID, role, username, password, name, address, email);
+                String ID = resultSet.getString("userID");
+                String role = resultSet.getString("role");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                user = new User(ID, role, username, password, name, address, email);
 
 //                    break;
 //                }
@@ -146,7 +180,7 @@ public class DBManager {
 
         return user;
     }
-    
+
     public void addProduct(Product product) {
         try {
             // Load the driver
@@ -248,9 +282,9 @@ public class DBManager {
 
         return products;
     }
-    
-    public ArrayList<Product> searchSpesificProducts(String itemdescription){
-         ArrayList<Product> products = new ArrayList<>();
+
+    public ArrayList<Product> searchSpesificProducts(String itemdescription) {
+        ArrayList<Product> products = new ArrayList<>();
 
         try {
             // Load the driver

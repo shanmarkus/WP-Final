@@ -4,6 +4,9 @@
     Author     : Jason
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Objects.User"%>
+<%@page import="Objects.DBManager"%>
 <%@ include file="headerAdmin.jsp" %>
 <body>
     <%
@@ -20,6 +23,7 @@
                 <th>Username</th>
                 <th>Password</th>
                 <th>Full name</th>
+                <th>Address</th>
                 <th>Email</th>
                 <th>Command</th>
             </tr>
@@ -27,32 +31,26 @@
         <tbody>
 
         <%
-            try {
-                // Load the driver
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-                // Connect to MySQL
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                Statement statement = connection.createStatement();
-
-                // Get the data from MySQL
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM users;");
-                while (resultSet.next()) {
+            ArrayList<User> users = new DBManager().getAllUser();
+           
+                for(User u : users){
+                   
                     out.println("<tr>");
-                    out.println("<td>" + resultSet.getString(3) + "</td>");
-                    out.println("<td>" + resultSet.getString(4) + "</td>");
-                    out.println("<td>" + resultSet.getString(5) + "</td>");
-                    out.println("<td>" + resultSet.getString(6) + "</td>");
+                    out.println("<td>" + u.getUsername() + "</td>");
+                    out.println("<td>" + u.getPassword() + "</td>");
+                    out.println("<td>" + u.getName() + "</td>");
+                    out.println("<td>" + u.getAddress() + "</td>");
+                    out.println("<td>" + u.getEmail() + "</td>");
                     out.println("<td>");
                     out.println("<form action=\"myServlet\" method=\"POST\">");
                     out.println("<input type=\"hidden\" name=\"page\" value=\"admin\">");
-                    out.println("<input type=\"hidden\" name=\"username\" value=\"" + resultSet.getString(3) + "\">");
+                    out.println("<input type=\"hidden\" name=\"username\" value=\"" + u.getUsername() + "\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"edit\">");
                     out.println("<input type=\"submit\" value=\"Edit\">");
                     out.println("</form>");
                     out.println("<form action=\"myServlet\" method=\"POST\" onsubmit=\"return confirmation();\">");
                     out.println("<input type=\"hidden\" name=\"page\" value=\"admin\">");
-                    out.println("<input type=\"hidden\" name=\"username\" value=\"" + resultSet.getString(3) + "\">");
+                    out.println("<input type=\"hidden\" name=\"username\" value=\"" + u.getUsername() + "\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"delete\">");
                     out.println("<input type=\"submit\" value=\"Delete\">");
                     out.println("</form>");
@@ -60,12 +58,6 @@
                     out.println("</tr>");
                 }
 
-                // Close the connection to MySQL
-                statement.close();
-                connection.close();
-            } catch (SQLException ex) {
-                out.println(ex.toString());
-            }
         %>
         </tbody>
     </table>
