@@ -48,6 +48,7 @@
                     out.println("<form action=\"myServlet\" method=\"POST\">");
                     out.println("<input type=\"hidden\" name=\"page\" value=\"adminstock\">");
                     out.println("<input type=\"hidden\" name=\"productID\" value=\"" + p.getProductID() + "\">");
+                    out.println("<input type=\"hidden\" name=\"productName\" value=\"" + p.getName()+ "\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"edit\">");
                     out.println("<input type=\"submit\" value=\"Edit\">");
                     out.println("</form>");

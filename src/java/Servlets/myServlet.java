@@ -189,41 +189,50 @@ public class myServlet extends HttpServlet {
                     out.println(ex.toString());
                 }
             } else if (request.getParameter("page").equals("admin")) {
-                try {
-                    if (request.getParameter("command").equals("delete")) {
-                        // Load the driver
-                        Class.forName("com.mysql.jdbc.Driver").newInstance();
+                String action = request.getParameter("action");
 
-                        // Connect to MySQL
-                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                        Statement statement = connection.createStatement();
-
-                        // Delete the data
-                        statement.execute("DELETE FROM users WHERE username = '" + request.getParameter("username") + "';");
-
-                        // Redirect to admin.jsp
-                        response.sendRedirect("admin.jsp");
-                    } else {
-                        request.getSession(false).setAttribute("username", request.getParameter("username"));
-                        response.sendRedirect("editUser.jsp");
-                    }
-                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                    out.println(ex.toString());
+                if (action.equals("stocksystem")) {
+                    response.sendRedirect("adminStock.jsp");
+                } else if (action.equals("usersetting")) {
+                } else {
+                    out.println("KIYOMI OUT OF BOUNDARIES");
                 }
-                
+//                try {
+//                    if (request.getParameter("command").equals("delete")) {
+//                        // Load the driver
+//                        Class.forName("com.mysql.jdbc.Driver").newInstance();
+//
+//                        // Connect to MySQL
+//                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+//                        Statement statement = connection.createStatement();
+//
+//                        // Delete the data
+//                        statement.execute("DELETE FROM users WHERE username = '" + request.getParameter("username") + "';");
+//
+//                        // Redirect to admin.jsp
+//                        response.sendRedirect("admin.jsp");
+//                    } else {
+//                        request.getSession(false).setAttribute("username", request.getParameter("username"));
+//                        response.sendRedirect("editUser.jsp");
+//                    }
+//                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+//                    out.println(ex.toString());
+//                }
+
                 //admin stock
             } else if (request.getParameter("page").equals("adminstock")) {
-                
-                    if (request.getParameter("command").equals("delete")) {
-                        
-                       new DBManager().deleteUser(request.getParameter("productID"));
-                       response.sendRedirect("adminStock.jsp");
-                        
-                    } else {
-                        request.getSession(false).setAttribute("username", request.getParameter("username"));
-                        response.sendRedirect("editStock.jsp");
+
+                if (request.getParameter("command").equals("delete")) {
+
+                    new DBManager().deleteProduct(request.getParameter("productID"));
+                    response.sendRedirect("adminStock.jsp");
+
+                } else {
                     
-                } 
+                    request.getSession(false).setAttribute("name", request.getParameter("name"));
+                    response.sendRedirect("editStock.jsp");
+
+                }
             } else if (request.getParameter("page").equals("editUser")) {
                 try {
                     // Load the driver
@@ -246,13 +255,28 @@ public class myServlet extends HttpServlet {
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     out.println(ex.toString());
                 }
+            } else if (request.getParameter("page").equals("editStock")) {
+                String productID = request.getParameter("productID");
+                String name = request.getParameter("name");
+                String description = request.getParameter("description");
+                Integer stock = Integer.parseInt(request.getParameter("stock"));
+                Integer price = Integer.parseInt(request.getParameter("price"));
+                String pictureURL = request.getParameter("pictureURL");
+
+                new DBManager().editProduct(productID, name, description, stock, price, pictureURL);
+
+                response.sendRedirect("adminStock.jsp");
+
             } else if (request.getParameter("page").equals("admin")) {
-                HttpSession session = request.getSession();
+                out.println("KIYOMI OUT OF BOUNDARIES SERVLETT");
                 String action = request.getParameter("action");
 
-                if (action.equals("stocksytem")) {
+                if (action.equals("stocksystem")) {
+//                    response.sendRedirect("adminStock.jsp");
+                    out.println("KIYOMI");
                 } else if (action.equals("usersetting")) {
                 } else {
+                    out.println("KIYOMI OUT OF BOUNDARIES");
                 }
 
             } else if (request.getParameter(

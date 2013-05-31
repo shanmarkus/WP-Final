@@ -33,7 +33,25 @@ public class DBManager {
             statement.execute("DELETE FROM users WHERE username = '" + username + "';");
 
             // Close connection to database
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+        public void deleteProduct(String productID) {
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
 
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Delete user
+            statement.execute("DELETE FROM test WHERE productID = '" + productID + "';");
+
+            // Close connection to database
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -223,6 +241,28 @@ public class DBManager {
 
             // Close connection to database
             preparedStatement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void editProduct(String productID, String name, String description, Integer stock, Integer price, String pictureURL) {
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("UPDATE tests SET name='" + name + "', description='" + description + "', "
+                    + "stock='" + stock + "', price='" + price + "', pictureURL='" + pictureURL + "' WHERE username='" + productID + "';");
+
+            // Close connection to database
+            statement.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
