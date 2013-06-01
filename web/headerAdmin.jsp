@@ -54,19 +54,19 @@
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                                 <!--  Example form for submiting the value -->
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="admin">
+                                    <input type="hidden" name="page" value="adminheader">
                                     <input type="hidden" name="action" value="stocksystem">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Stock System</a></li>
                                 </form>
                                 <li role="presentation" class="divider"></li>
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="admin">
+                                    <input type="hidden" name="page" value="adminheader">
                                     <input type="hidden" name="action" value="usersetting">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">User Setting</a></li>
                                 </form>
                                 <li role="presentation" class="divider"></li>
                                 <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="admin">
+                                    <input type="hidden" name="page" value="adminheader">
                                     <input type="hidden" name="action" value="transaction">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Transaction Record</a></li>
                                 </form>

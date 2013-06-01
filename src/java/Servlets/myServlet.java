@@ -188,7 +188,7 @@ public class myServlet extends HttpServlet {
                 } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                     out.println(ex.toString());
                 }
-            } else if (request.getParameter("page").equals("admin")) {
+            } else if (request.getParameter("page").equals("adminheader")) {
                 String action = request.getParameter("action");
 
                 if (action.equals("stocksystem")) {
@@ -260,16 +260,20 @@ public class myServlet extends HttpServlet {
                 response.sendRedirect("adminStock.jsp");
 
             } else if (request.getParameter("page").equals("admin")) {
-                String action = request.getParameter("action");
-
-                if (action.equals("stocksystem")) {
-                   response.sendRedirect("adminStock.jsp");
-                } else if (action.equals("usersetting")) {
+                String command = request.getParameter("command");
+                if(command.equals("delete")){
+                    String username = request.getParameter("username");
+                    out.println(username);
+                    new DBManager().deleteUser(username);
                     response.sendRedirect("admin.jsp");
-                } else {
-                    out.println("KIYOMI OUT OF BOUNDARIES");
+                }
+                
+                else if (command.equals("edit")){
+                    request.getSession(false).setAttribute("username", request.getParameter("username"));
+                    response.sendRedirect("editUser.jsp");
                 }
 
+                
             } else if (request.getParameter(
                     "page").equals("buy")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
