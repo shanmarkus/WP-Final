@@ -228,7 +228,7 @@ public class myServlet extends HttpServlet {
                     // Update the data
                     preparedStatement.setString(1, request.getParameter("password"));
                     preparedStatement.setString(2, request.getParameter("name"));
-                    preparedStatement.setString(3, request.getParameter("email"));
+                    preparedStatement.setString(3, request.getParameter("address"));
                     preparedStatement.setString(4, request.getParameter("email"));
                     preparedStatement.setString(5, request.getSession(false).getAttribute("username").toString());
                     preparedStatement.executeUpdate();
@@ -248,14 +248,24 @@ public class myServlet extends HttpServlet {
                 new DBManager().editProduct(name, description, stock, price, pictureURL, productID);
                 response.sendRedirect("adminStock.jsp");
 
+            } else if (request.getParameter("page").equals("addStock")) {
+                String category = request.getParameter("category");
+                String subcategory = request.getParameter("subcategory");
+                String name = request.getParameter("name");
+                String description = request.getParameter("description");
+                Integer stock = Integer.parseInt(request.getParameter("stock"));
+                Integer price = Integer.parseInt(request.getParameter("price"));
+                String pictureURL = request.getParameter("pictureURL");
+                new DBManager().addProduct(category, subcategory, name, description, stock, price, pictureURL);
+                response.sendRedirect("adminStock.jsp");
+
             } else if (request.getParameter("page").equals("admin")) {
-                out.println("KIYOMI OUT OF BOUNDARIES SERVLETT");
                 String action = request.getParameter("action");
 
                 if (action.equals("stocksystem")) {
-//                    response.sendRedirect("adminStock.jsp");
-                    out.println("KIYOMI");
+                   response.sendRedirect("adminStock.jsp");
                 } else if (action.equals("usersetting")) {
+                    response.sendRedirect("admin.jsp");
                 } else {
                     out.println("KIYOMI OUT OF BOUNDARIES");
                 }

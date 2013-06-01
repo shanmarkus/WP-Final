@@ -4,7 +4,7 @@
     Author     : Shan
 --%>
 
-<%@page import="Objects.Product"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="headerAdmin.jsp" %>
@@ -70,6 +70,7 @@
         </tbody>
     </table>
         <a href="addStock.jsp">Add new product</a>
+        <br>
     <strong>
         <a href="index.jsp">Go Back to Login Page</a>
     </strong>

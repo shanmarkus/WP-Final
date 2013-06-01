@@ -38,8 +38,8 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-        public void deleteProduct(String productID) {
+
+    public void deleteProduct(String productID) {
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -219,28 +219,26 @@ public class DBManager {
         return user;
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(String category, String subcategory, String name, String description, Integer stock, Integer price, String pictureURL) {
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
             // Connect to MySQL
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO test VALUES ( ?, ?, ?, ?, ?, ?, ?, ?);");
-
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO test (category,subcategory,name,description,stock,price,pictureURL) VALUES (?, ?, ?, ?, ?, ?, ?);");
+            
             // Add new user
-            preparedStatement.setString(1, product.getProductID());
-            preparedStatement.setString(2, product.getCategory());
-            preparedStatement.setString(3, product.getSubcategory());
-            preparedStatement.setString(4, product.getName());
-            preparedStatement.setString(5, product.getDescription());
-            preparedStatement.setString(6, product.getStock().toString());
-            preparedStatement.setString(7, product.getPrice().toString());
-            preparedStatement.setString(8, product.getPictureURL());
+            preparedStatement.setString(1, category);
+            preparedStatement.setString(2, subcategory);
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, description);
+            preparedStatement.setString(5, stock.toString());
+            preparedStatement.setString(6, price.toString());
+            preparedStatement.setString(7, pictureURL);
             preparedStatement.executeUpdate();
 
             // Close connection to database
-            preparedStatement.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -253,14 +251,19 @@ public class DBManager {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            // Connect to MySQL
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-            Statement statement = connection.createStatement();
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE test SET name=?, description=?, stock=?, price=?, pictureURL=? WHERE productID=?;");
 
-            // Search for the user
-            statement.executeQuery("UPDATE test SET name='" + name + "', description='" + description + "', stock='" + stock + "', price='" + price + "', pictureURL ='" + pictureURL + "' WHERE productID = '" + productID + "';");
-            // Close connection to database
-            statement.close();
+            // Update the data
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, description);
+            preparedStatement.setString(3, stock.toString());
+            preparedStatement.setString(4, price.toString());
+            preparedStatement.setString(5, pictureURL);
+            preparedStatement.setString(6, productID);
+            preparedStatement.executeUpdate();
+           
+            //connection closed
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);

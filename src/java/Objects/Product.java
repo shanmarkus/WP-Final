@@ -32,6 +32,7 @@ public class Product implements Serializable {
         this.pictureURL = pictureURL;
     }
 
+
     public String getProductID() {
         return productID;
     }

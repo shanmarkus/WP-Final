@@ -11,6 +11,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Objects.User"%>
+<%@page import="Objects.Product"%>
 <%@page import="Objects.DBManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
