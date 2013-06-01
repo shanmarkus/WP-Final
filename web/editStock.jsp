@@ -4,24 +4,16 @@
     Author     : Shan
 --%>
 
-<%-- 
-    Document   : editUser
-    Created on : Apr 5, 2013, 11:17:48 PM
-    Author     : Jason
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Stock Item</title>
-    </head>
-    <body>
-        <h1>Edit data for "<%= request.getSession(false).getAttribute("productName")%>"</h1>
+<%@ include file="headerAdmin.jsp" %>
 
-        <form action="myServlet" method="POST" name="editForm">
+    <body>
+        <h1>Edit data for "<%= session.getAttribute("name")%>"</h1>
+        <%= session.getAttribute("productID")%>
+        <form action="myServlet" method="POST">
             <input type="hidden" value="editStock" name="page">
+            <input type="hidden" name="productID" value="<%= session.getAttribute("productID")%>">
 
             <table style="border-collapse: collapse; width: 320px">
                 <tr>

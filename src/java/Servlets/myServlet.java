@@ -194,30 +194,10 @@ public class myServlet extends HttpServlet {
                 if (action.equals("stocksystem")) {
                     response.sendRedirect("adminStock.jsp");
                 } else if (action.equals("usersetting")) {
+                    response.sendRedirect("admin.jsp");
                 } else {
                     out.println("KIYOMI OUT OF BOUNDARIES");
                 }
-//                try {
-//                    if (request.getParameter("command").equals("delete")) {
-//                        // Load the driver
-//                        Class.forName("com.mysql.jdbc.Driver").newInstance();
-//
-//                        // Connect to MySQL
-//                        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-//                        Statement statement = connection.createStatement();
-//
-//                        // Delete the data
-//                        statement.execute("DELETE FROM users WHERE username = '" + request.getParameter("username") + "';");
-//
-//                        // Redirect to admin.jsp
-//                        response.sendRedirect("admin.jsp");
-//                    } else {
-//                        request.getSession(false).setAttribute("username", request.getParameter("username"));
-//                        response.sendRedirect("editUser.jsp");
-//                    }
-//                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-//                    out.println(ex.toString());
-//                }
 
                 //admin stock
             } else if (request.getParameter("page").equals("adminstock")) {
@@ -227,9 +207,12 @@ public class myServlet extends HttpServlet {
                     new DBManager().deleteProduct(request.getParameter("productID"));
                     response.sendRedirect("adminStock.jsp");
 
-                } else {
-                    
-                    request.getSession(false).setAttribute("name", request.getParameter("name"));
+                } else if (request.getParameter("command").equals("edit")) {
+                    String productID = request.getParameter("productID");
+                    String name = request.getParameter("name");
+                    HttpSession session = request.getSession();
+                    session.setAttribute("name", name);
+                    session.setAttribute("productID", productID);
                     response.sendRedirect("editStock.jsp");
 
                 }
@@ -262,9 +245,7 @@ public class myServlet extends HttpServlet {
                 Integer stock = Integer.parseInt(request.getParameter("stock"));
                 Integer price = Integer.parseInt(request.getParameter("price"));
                 String pictureURL = request.getParameter("pictureURL");
-
-                new DBManager().editProduct(productID, name, description, stock, price, pictureURL);
-
+                new DBManager().editProduct(name, description, stock, price, pictureURL, productID);
                 response.sendRedirect("adminStock.jsp");
 
             } else if (request.getParameter("page").equals("admin")) {

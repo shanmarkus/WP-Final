@@ -247,7 +247,7 @@ public class DBManager {
         }
     }
 
-    public void editProduct(String productID, String name, String description, Integer stock, Integer price, String pictureURL) {
+    public void editProduct(String name, String description, Integer stock, Integer price, String pictureURL, String productID) {
 
         try {
             // Load the driver
@@ -258,9 +258,7 @@ public class DBManager {
             Statement statement = connection.createStatement();
 
             // Search for the user
-            ResultSet resultSet = statement.executeQuery("UPDATE tests SET name='" + name + "', description='" + description + "', "
-                    + "stock='" + stock + "', price='" + price + "', pictureURL='" + pictureURL + "' WHERE username='" + productID + "';");
-
+            statement.executeQuery("UPDATE test SET name='" + name + "', description='" + description + "', stock='" + stock + "', price='" + price + "', pictureURL ='" + pictureURL + "' WHERE productID = '" + productID + "';");
             // Close connection to database
             statement.close();
             connection.close();
