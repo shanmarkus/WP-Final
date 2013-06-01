@@ -80,13 +80,20 @@
 
 <div class="row">
     <div class="span1">
-        Email::
+        Email:
     </div>
     <div class="span6">
         <%=user.getEmail()%>
     </div>
 </div>
 
+    <div class="row">
+        <form action="myServlet" method="post">
+            <input type="hidden" name="page" value="confirmtransaction">
+            <input type="submit" name="submit" value="submit">
+            <input type="button" name="cancel" value="cancel" onclick="cancelConfirmPage();">
+        </form>
+    </div>
 
 
 

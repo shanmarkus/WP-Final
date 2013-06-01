@@ -196,7 +196,7 @@ public class myServlet extends HttpServlet {
                 } else if (action.equals("usersetting")) {
                     response.sendRedirect("admin.jsp");
                 } else {
-                    out.println("KIYOMI OUT OF BOUNDARIES");
+                    response.sendRedirect("adminTransaction.jsp");
                 }
 
                 //admin stock
