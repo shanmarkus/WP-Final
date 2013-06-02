@@ -180,6 +180,65 @@ public class DBManager {
 
         return user;
     }
+    
+    //Checkout Database Function
+    
+    public void updateStock(String productID, Integer stocknew){
+         try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE test SET stock=? WHERE productID=?;");
+
+            // Update the data
+
+            preparedStatement.setString(1, stocknew.toString());
+            preparedStatement.setString(2, productID);
+            preparedStatement.executeUpdate();
+           
+            //connection closed
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+    
+    public void createInvoice(){
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE name=;");
+            while (resultSet.next()) {
+//                if (userID.equals(resultSet.getString("userID"))) {
+                String ID = resultSet.getString("userID");
+                String role = resultSet.getString("role");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+               
+
+//                    break;
+//                }
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public User getLoginUser(String userID) {
         User user = null;

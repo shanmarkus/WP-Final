@@ -9,7 +9,6 @@
 <%@ include file="header.jsp" %>
 <%
     ArrayList<ProductInCart> productsInCart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-    out.println(productsInCart.size());
     String userID = session.getAttribute("name").toString();
     User user = new DBManager().getLoginUser(userID);
 %>
@@ -87,11 +86,20 @@
     </div>
 </div>
 
-    <div class="row">
+    <div class="row marginTop20px">
         <form action="myServlet" method="post">
             <input type="hidden" name="page" value="confirmtransaction">
             <input type="submit" name="submit" value="submit">
-            <input type="button" name="cancel" value="cancel" onclick="cancelConfirmPage();">
+            <% 
+            for (ProductInCart p : productsInCart) {
+                String productIDtemp= p.getProductID();
+                Product producttemp = new DBManager().getProduct(productIDtemp);
+                Integer DBstock =producttemp.getStock();
+                Integer updateDBStock = DBstock - p.getAmount();
+                new DBManager().updateStock(productIDtemp, updateDBStock);
+            }
+            
+            %>
         </form>
     </div>
 
