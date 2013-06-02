@@ -390,6 +390,9 @@ public class myServlet extends HttpServlet {
             } 
             
             else if (request.getParameter("page").equals("confirmtransaction")){
+                String listlog = request.getParameter("listlog");
+                out.println(listlog);
+                new DBManager().createInvoice(listlog);
                 response.sendRedirect("invoice.jsp");
             }
             //Search bar function

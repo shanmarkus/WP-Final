@@ -206,34 +206,20 @@ public class DBManager {
         
     }
     
-    public void createInvoice(){
+    public void createInvoice(String log){
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            // Connect to MySQL
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-            Statement statement = connection.createStatement();
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO invoice VALUES ('', ?)");
 
-            // Search for the user
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE name=;");
-            while (resultSet.next()) {
-//                if (userID.equals(resultSet.getString("userID"))) {
-                String ID = resultSet.getString("userID");
-                String role = resultSet.getString("role");
-                String username = resultSet.getString("username");
-                String password = resultSet.getString("password");
-                String name = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                String address = resultSet.getString("address");
-               
+            // Update the data
 
-//                    break;
-//                }
-            }
-
-            // Close connection to database
-            statement.close();
+            preparedStatement.setString(1, log);
+            preparedStatement.executeUpdate();
+           
+            //connection closed
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);

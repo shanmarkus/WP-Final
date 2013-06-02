@@ -86,22 +86,39 @@
     </div>
 </div>
 
-    <div class="row marginTop20px">
-        <form action="myServlet" method="post">
-            <input type="hidden" name="page" value="confirmtransaction">
-            <input type="submit" name="submit" value="submit">
-            <% 
+<div class="row marginTop20px">
+    <form action="myServlet" method="post">
+        <input type="hidden" name="page" value="confirmtransaction">
+        
+        <%
+            ArrayList<String> log = new ArrayList<String>();
+            String listlog = "";
+
             for (ProductInCart p : productsInCart) {
-                String productIDtemp= p.getProductID();
+                String productIDtemp = p.getProductID();
                 Product producttemp = new DBManager().getProduct(productIDtemp);
-                Integer DBstock =producttemp.getStock();
+                Integer DBstock = producttemp.getStock();
                 Integer updateDBStock = DBstock - p.getAmount();
                 new DBManager().updateStock(productIDtemp, updateDBStock);
+                String name = p.getName();
+                String amount = p.getAmount().toString();
+                Integer totalPriceTemp = p.getPrice() * p.getAmount();
+                String totalPrice = totalPriceTemp.toString();
+                String logtext = name + " " + amount + " " + totalPrice;
+                log.add(logtext);
             }
-            
-            %>
-        </form>
-    </div>
+
+
+            for (String s : log) {
+                listlog += s + "\t";
+            }
+            session.setAttribute("listlog", listlog);
+
+        %>
+        <input type="hidden" name="listlog" value="<%= listlog %>">  
+    <input type="submit" name="submit" value="submit">
+    </form>
+</div>
 
 
 
