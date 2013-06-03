@@ -4,14 +4,20 @@
     Author     : Shan
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
+<% 
+    String userID = session.getAttribute("userID").toString();
+    Invoice invoice = new DBManager().getInvoice(userID);
+%>
+
+        WILL EMBED FILE FLASH HERE 
+        
+        <h1>Thank you for your buying</h1>
+        <br>
+        <h3>This is your invoice number <%=invoice.getInvoiceID()%> </h3>
+        <br>
+        <h4>Please click <a href="mainmenu.jsp"> here </a> to go to main menu</h4>
     </body>
 </html>

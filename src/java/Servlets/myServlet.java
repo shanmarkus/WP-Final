@@ -394,6 +394,11 @@ public class myServlet extends HttpServlet {
                 String userID = request.getParameter("userID");
                 Integer userIDtemp = Integer.parseInt(userID);
                 new DBManager().createInvoice(userIDtemp,listlog);
+                
+                HttpSession session = request.getSession();
+                session.setAttribute("userID", userID);
+                
+               //sent redirect
                 response.sendRedirect("invoice.jsp");
             }
             //Search bar function

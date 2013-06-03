@@ -208,8 +208,8 @@ public class DBManager {
     
     //invoice management 
     
-    public void getInvoice(String userID){
-        
+    public Invoice getInvoice(String userID){
+         Invoice invoice = null;
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -224,7 +224,8 @@ public class DBManager {
                 if (userID.equals(resultSet.getString("userID"))) {
                     String invoiceNumber = resultSet.getString("invoiceID");
                     String log = resultSet.getString("log");
-                    
+                    Integer tempInvoiceNumber = Integer.parseInt(invoiceNumber);
+                    invoice = new Invoice(tempInvoiceNumber,log);
                     break;
                 }
             }
@@ -235,6 +236,7 @@ public class DBManager {
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return invoice;
     }
     
     public void createInvoice(Integer userID,String log){
