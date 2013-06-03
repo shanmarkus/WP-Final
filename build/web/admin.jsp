@@ -4,9 +4,7 @@
     Author     : Jason
 --%>
 
-<%@page import="java.util.ArrayList"%>
-<%@page import="Objects.User"%>
-<%@page import="Objects.DBManager"%>
+
 <%@ include file="headerAdmin.jsp" %>
 <body>
     <%

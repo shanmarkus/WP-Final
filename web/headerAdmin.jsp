@@ -8,6 +8,9 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Objects.User"%>
+<%@page import="Objects.Invoice"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Objects.User"%>
