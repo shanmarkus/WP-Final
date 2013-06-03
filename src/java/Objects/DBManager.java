@@ -208,6 +208,39 @@ public class DBManager {
     
     //invoice management 
     
+    public ArrayList<Invoice> getAllInvoice(){
+        
+        ArrayList<Invoice> invoices = new ArrayList<>();
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM invoice;");
+            while (resultSet.next()) {
+                String invoiceID = resultSet.getString("invoiceID");
+                Integer invoiceIDTemp = Integer.parseInt(invoiceID);
+                String log = resultSet.getString("log");
+                String userID = resultSet.getString("userID");
+                invoices.add(new Invoice(invoiceIDTemp,userID,log));
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return invoices;
+    
+    }
+    
     public Invoice getInvoice(String userID){
          Invoice invoice = null;
         try {
@@ -225,7 +258,7 @@ public class DBManager {
                     String invoiceNumber = resultSet.getString("invoiceID");
                     String log = resultSet.getString("log");
                     Integer tempInvoiceNumber = Integer.parseInt(invoiceNumber);
-                    invoice = new Invoice(tempInvoiceNumber,log);
+                    invoice = new Invoice(tempInvoiceNumber,userID,log);
                     break;
                 }
             }

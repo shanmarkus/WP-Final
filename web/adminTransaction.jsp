@@ -32,29 +32,29 @@
         <tbody>
 
             <%
-                ArrayList<Product> products = new DBManager().getAllProducts();
+                ArrayList<Invoice> invoices = new DBManager().getAllInvoice();
 
-                for (Product p : products) {
-
+                for (Invoice i : invoices) {
+                    String userIDtemp = i.getUserID();
+//                    Integer userID = Integer.parseInt(userIDtemp);
+//                    User user = new DBManager().getUser(userID);
+                    
                     out.println("<tr>");
-                    out.println("<td>" + p.getCategory() + "</td>");
-                    out.println("<td>" + p.getSubcategory() + "</td>");
-                    out.println("<td>" + p.getName()+ "</td>");
-                    out.println("<td>" + p.getDescription() + "</td>");
-                    out.println("<td>" + p.getStock() + "</td>");
-                    out.println("<td>" + p.getPrice() + "</td>");
-                    out.println("<td>" + p.getPictureURL() + "</td>");
+                    out.println("<td>" + i.getInvoiceID()+ "</td>");
+//                    out.println("<td>" + user.getName() + "</td>");
+                    out.println("<td>" + i.getLog() + "</td>");
+                    
                     out.println("<td>");
                     out.println("<form action=\"myServlet\" method=\"POST\">");
-                    out.println("<input type=\"hidden\" name=\"page\" value=\"adminstock\">");
-                    out.println("<input type=\"hidden\" name=\"productID\" value=\"" + p.getProductID() + "\">");
-                    out.println("<input type=\"hidden\" name=\"name\" value=\"" + p.getName()+ "\">");
+                    out.println("<input type=\"hidden\" name=\"page\" value=\"admintransaction\">");
+                    out.println("<input type=\"hidden\" name=\"invoicetID\" value=\"" + i.getInvoiceID() + "\">");
+//                    out.println("<input type=\"hidden\" name=\"name\" value=\"" + user.getName()+ "\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"edit\">");
                     out.println("<input type=\"submit\" value=\"Edit\">");
                     out.println("</form>");
                     out.println("<form action=\"myServlet\" method=\"POST\" onsubmit=\"return confirmation();\">");
-                    out.println("<input type=\"hidden\" name=\"page\" value=\"adminstock\">");
-                    out.println("<input type=\"hidden\" name=\"productID\" value=\"" + p.getProductID() + "\">");
+                    out.println("<input type=\"hidden\" name=\"page\" value=\"admintransaction\">");
+                    out.println("<input type=\"hidden\" name=\"invoicetID\" value=\"" + i.getInvoiceID() + "\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"delete\">");
                     out.println("<input type=\"submit\" value=\"Delete\">");
                     out.println("</form>");

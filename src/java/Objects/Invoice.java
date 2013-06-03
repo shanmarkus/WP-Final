@@ -12,10 +12,19 @@ public class Invoice {
 
     private Integer invoiceID;
     private String log;
+    private String userID;
     
-    public Invoice(Integer invoiceID, String log) {
+    public Invoice(Integer invoiceID, String userID, String log) {
         this.invoiceID = invoiceID;
         this.log = log;
+    }
+    
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public void setInvoiceID(Integer invoiceID) {
