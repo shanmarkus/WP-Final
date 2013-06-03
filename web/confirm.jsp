@@ -116,6 +116,7 @@
 
         %>
         <input type="hidden" name="listlog" value="<%= listlog %>">  
+        <input type="hidden" name="userID" value="<%= user.getUserID() %>">
     <input type="submit" name="submit" value="submit">
     </form>
 </div>

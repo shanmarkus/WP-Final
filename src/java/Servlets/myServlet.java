@@ -391,8 +391,9 @@ public class myServlet extends HttpServlet {
             
             else if (request.getParameter("page").equals("confirmtransaction")){
                 String listlog = request.getParameter("listlog");
-                out.println(listlog);
-                new DBManager().createInvoice(listlog);
+                String userID = request.getParameter("userID");
+                Integer userIDtemp = Integer.parseInt(userID);
+                new DBManager().createInvoice(userIDtemp,listlog);
                 response.sendRedirect("invoice.jsp");
             }
             //Search bar function

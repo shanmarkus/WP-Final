@@ -206,17 +206,51 @@ public class DBManager {
         
     }
     
-    public void createInvoice(String log){
+    //invoice management 
+    
+    public void getInvoice(String userID){
+        
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM invoice WHERE userID='" + userID + "';");
+            while (resultSet.next()) {
+                if (userID.equals(resultSet.getString("userID"))) {
+                    String invoiceNumber = resultSet.getString("invoiceID");
+                    String log = resultSet.getString("log");
+                    
+                    break;
+                }
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void createInvoice(Integer userID,String log){
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO invoice VALUES ('', ?)");
+            Statement statement = connection.createStatement();
+
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO invoice (userID,log) VALUES (?,?);");
 
             // Update the data
 
-            preparedStatement.setString(1, log);
+            preparedStatement.setString(1, userID.toString());
+            preparedStatement.setString(2, log);
             preparedStatement.executeUpdate();
            
             //connection closed
