@@ -226,7 +226,7 @@ public class DBManager {
                 String invoiceID = resultSet.getString("invoiceID");
                 Integer invoiceIDTemp = Integer.parseInt(invoiceID);
                 String log = resultSet.getString("log");
-                String userID = resultSet.getString("userID");
+                String userID = resultSet.getString("userID");    
                 invoices.add(new Invoice(invoiceIDTemp,userID,log));
             }
 

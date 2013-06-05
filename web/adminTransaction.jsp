@@ -33,12 +33,13 @@
 
             <%
                 ArrayList<Invoice> invoices = new DBManager().getAllInvoice();
-
+                
+                out.println(invoices.get(1).getLog());
                 for (Invoice i : invoices) {
                     String userIDtemp = i.getUserID();
-                    Integer userID = Integer.parseInt(userIDtemp);
+                    
 //                    User user = new DBManager().getUser(userID);
-                    out.println(userID);
+                    out.println(userIDtemp);
                     out.println("<tr>");
                     out.println("<td>" + i.getInvoiceID()+ "</td>");
 //                    out.println("<td>" + user.getName() + "</td>");

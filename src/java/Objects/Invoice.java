@@ -17,6 +17,7 @@ public class Invoice {
     public Invoice(Integer invoiceID, String userID, String log) {
         this.invoiceID = invoiceID;
         this.log = log;
+        this.userID = userID;
     }
     
     public String getUserID() {
