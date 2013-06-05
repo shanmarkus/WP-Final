@@ -257,6 +257,7 @@ public class myServlet extends HttpServlet {
                     request.getSession(false).setAttribute("username", request.getParameter("username"));
                     response.sendRedirect("editUser.jsp");
                 }
+            }
             
             //Edit User Servlet
             
@@ -291,6 +292,7 @@ public class myServlet extends HttpServlet {
                 if (request.getParameter("command").equals("delete")) {
 
                     new DBManager().deleteProduct(request.getParameter("productID"));
+                    out.println("FAKK ERROR");
                     response.sendRedirect("adminStock.jsp");
 
                 } else if (request.getParameter("command").equals("edit")) {
@@ -323,11 +325,10 @@ public class myServlet extends HttpServlet {
                 String pictureURL = request.getParameter("pictureURL");
                 new DBManager().addProduct(category, subcategory, name, description, stock, price, pictureURL);
                 response.sendRedirect("adminStock.jsp");
-
             } 
 
                 
-            }  
+            
             
             // Checkout.jsp 
             

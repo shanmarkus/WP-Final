@@ -40,22 +40,6 @@
                     out.println("<td>" + i.getInvoiceID() + "</td>");
                     out.println("<td>" + user.getName() + "</td>");
                     out.println("<td>" + i.getLog() + "</td>");
-
-                    out.println("<td>");
-                    out.println("<form action=\"myServlet\" method=\"POST\">");
-                    out.println("<input type=\"hidden\" name=\"page\" value=\"admintransaction\">");
-                    out.println("<input type=\"hidden\" name=\"invoicetID\" value=\"" + i.getInvoiceID() + "\">");
-                    out.println("<input type=\"hidden\" name=\"name\" value=\"" + user.getName()+ "\">");
-                    out.println("<input type=\"hidden\" name=\"command\" value=\"edit\">");
-                    out.println("<input type=\"submit\" value=\"Edit\">");
-                    out.println("</form>");
-                    out.println("<form action=\"myServlet\" method=\"POST\" onsubmit=\"return confirmation();\">");
-                    out.println("<input type=\"hidden\" name=\"page\" value=\"admintransaction\">");
-                    out.println("<input type=\"hidden\" name=\"invoicetID\" value=\"" + i.getInvoiceID() + "\">");
-                    out.println("<input type=\"hidden\" name=\"command\" value=\"delete\">");
-                    out.println("<input type=\"submit\" value=\"Delete\">");
-                    out.println("</form>");
-                    out.println("</td>");
                     out.println("</tr>");
                 }
 
