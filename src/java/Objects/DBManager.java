@@ -38,6 +38,40 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public ArrayList<User> searchSpesificUser (String userdescription) {
+        ArrayList<User> users = new ArrayList<>();
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE name LIKE '" + userdescription + "';");
+            while (resultSet.next()) {
+                String ID = resultSet.getString("userID");
+                String role = resultSet.getString("role");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                String email = resultSet.getString("email");
+                users.add(new User(ID, role, username, password, name, address, email));
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return users;
+    }
 
     public void deleteProduct(String productID) {
         try {
