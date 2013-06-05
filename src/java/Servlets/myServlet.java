@@ -56,7 +56,7 @@ public class myServlet extends HttpServlet {
                     // Load the driver
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                    // Connect to MySQL localhot sexy beybeh
+                    // Connect to MySQL localhost
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
                     Statement statement = connection.createStatement();
 
