@@ -227,6 +227,23 @@ public class myServlet extends HttpServlet {
             
             //Admin Servlet
             
+            //
+            
+            else if(request.getParameter("page").equals("adminsearchbar")){
+                String searchtype = request.getParameter("searchtype");
+                 HttpSession session = request.getSession();
+                 
+                if(searchtype.equals("user")){
+                   session.setAttribute("searchtype",searchtype);
+                   response.sendRedirect("searchResultAdmin.jsp");
+                }
+                
+                else if(searchtype.equals("product")){
+                    session.setAttribute("searchtype",searchtype);
+                    response.sendRedirect("searchResultAdmin.jsp");
+                }
+            }
+            
             //Admin Header Servlet Controller 
             
             else if (request.getParameter("page").equals("adminheader")) {

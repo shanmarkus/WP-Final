@@ -84,12 +84,14 @@
                         </li>
 
                         <!--                        Search Box-->
-<!--                        <li class="pull-right">
+                        <li class="pull-right">
                             <form class="navbar-search" action="myServlet" method="post">
-                                <input type="hidden" name="page" value="searchbar">
+                                <input type="hidden" name="page" value="adminsearchbar">
+                                <input type="radio" value="user" name="searchtype"> User
+                                <input type="radio" value="product" name="searchtype"> Product
                                 <input type="text" class="search-query" placeholder="Search" name="search" value="search">
                             </form>
-                        </li>-->
+                        </li>
                     </ul>
                 </div>
             </div>
