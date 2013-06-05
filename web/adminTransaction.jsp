@@ -15,13 +15,13 @@
         String name = u.getName();
 
 //        String name = request.getSession(false).getAttribute("name").toString();
-%>
+    %>
 
     <h1>Hello <%= name%>!</h1>
     <br>
     <h2>Transaction Setting(s)</h2>
     <br>
-     <table border="1">
+    <table border="1">
         <thead>
             <tr>
                 <th>Invoice ID</th>
@@ -33,23 +33,19 @@
 
             <%
                 ArrayList<Invoice> invoices = new DBManager().getAllInvoice();
-                
-                out.println(invoices.get(1).getLog());
                 for (Invoice i : invoices) {
-                    String userIDtemp = i.getUserID();
-                    
-//                    User user = new DBManager().getUser(userID);
-                    out.println(userIDtemp);
+                    String userID = i.getUserID();
+                    User user = new DBManager().getUser(userID);
                     out.println("<tr>");
-                    out.println("<td>" + i.getInvoiceID()+ "</td>");
-//                    out.println("<td>" + user.getName() + "</td>");
+                    out.println("<td>" + i.getInvoiceID() + "</td>");
+                    out.println("<td>" + user.getName() + "</td>");
                     out.println("<td>" + i.getLog() + "</td>");
-                    
+
                     out.println("<td>");
                     out.println("<form action=\"myServlet\" method=\"POST\">");
                     out.println("<input type=\"hidden\" name=\"page\" value=\"admintransaction\">");
                     out.println("<input type=\"hidden\" name=\"invoicetID\" value=\"" + i.getInvoiceID() + "\">");
-//                    out.println("<input type=\"hidden\" name=\"name\" value=\"" + user.getName()+ "\">");
+                    out.println("<input type=\"hidden\" name=\"name\" value=\"" + user.getName()+ "\">");
                     out.println("<input type=\"hidden\" name=\"command\" value=\"edit\">");
                     out.println("<input type=\"submit\" value=\"Edit\">");
                     out.println("</form>");
