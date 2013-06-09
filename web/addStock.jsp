@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>Picture Url:</td>
-                    <td><input type="text" name="pictureURL" style="width: 100%"></td>
+                    <td><input type="file" name="pictureURL" style="width: 100%"></td>
                 </tr>
                 <tr>
                     <td colspan="2">

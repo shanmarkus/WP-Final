@@ -101,16 +101,21 @@
                                 <input type="text" class="search-query" placeholder="Search" name="search" value="search">
                             </form>
                         </li>
+                        <!--                        Edit profile and log out button-->
                         <li role="presentation" class="divider-vertical"></li>
-                        <li class="navbar-form pull-right">
+                        <a href="#" id="drop3" role="button" class="dropdown-toggle pull-right" data-toggle="dropdown">Action <b class="caret"></b></a>
+                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
                             <form action="myServlet" method="post">
                                 <input type="hidden" name="page" value="logout">
                                 <input type="submit" class="btn logoutBtn" value="logout">
                             </form>
-                        </li>
-                    </ul>
-
-
+                            <li role="presentation" class="divider"></li>
+                            <form action="myServlet" method="post">
+                                <input type="hidden" name="page" value="editprofile">
+                                <input type="hidden" name="userID" value="<%=session.getAttribute("userID")%>">
+                                <input type="submit" class="btn logoutBtn" value="edit">
+                            </form>
+                        </ul>
                 </div>
             </div>
 

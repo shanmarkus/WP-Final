@@ -60,13 +60,16 @@ public class myServlet extends HttpServlet {
                 if (status == true) {
                     String name = user.getName();
                     String role = user.getRole();
+                    String userID = user.getUserID();
                     HttpSession session = request.getSession();
-                    session.setAttribute("name", name);
-                    session.setAttribute("name", username);
                     if (role.equals("user")) {
+                        session.setAttribute("name", name);
+                        session.setAttribute("userID", userID);
+                        session.setAttribute("username", username);
                         session.setAttribute("cart", new ArrayList<ProductInCart>());
                         response.sendRedirect("mainmenu.jsp");
                     } else if (role.equals("administrator")) {
+                        session.setAttribute("name", name);
                         response.sendRedirect("admin.jsp");
                     }
                 } else {
@@ -114,6 +117,30 @@ public class myServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.invalidate();
                 response.sendRedirect("index.jsp");
+            } //edit profile passby
+            else if (request.getParameter("page").equals("editprofile")) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userID", request.getAttribute("userID"));
+                response.sendRedirect("editProfile.jsp");
+            }// edit profile
+            else if (request.getParameter("page").equals("editProfilePage")) {
+                String password = request.getParameter("password");
+                String name = request.getParameter("name");
+                String address = request.getParameter("address");
+                String email = request.getParameter("email");
+                String username = request.getParameter("username");
+                new DBManager().updateUser(password, name, address, email, username);
+                boolean status = new DBManager().checkUser(username, password);
+                User user = new DBManager().checkUserLogin(username, password);
+
+                String role = user.getRole();
+                String userID = user.getUserID();
+                HttpSession session = request.getSession();
+                session.setAttribute("name", name);
+                session.setAttribute("userID", userID);
+                session.setAttribute("username", username);
+                response.sendRedirect("mainmenu.jsp");
+
             } //foget password  
             else if (request.getParameter("page").equals("forgetpassword")) {
                 String username = request.getParameter("username");
@@ -239,27 +266,14 @@ public class myServlet extends HttpServlet {
                 }
             } //Edit User Servlet
             else if (request.getParameter("page").equals("editUser")) {
-                try {
-                    // Load the driver
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                String password = request.getParameter("password");
+                String name = request.getParameter("name");
+                String address = request.getParameter("address");
+                String email = request.getParameter("email");
+                String username = request.getParameter("username");
+                new DBManager().updateUser(password, name, address, email, username);
+                //response.sendRedirect("admin.jsp");
 
-                    // Connect to MySQL
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET password=?, name=?, address=?, email=? WHERE username=?;");
-
-                    // Update the data
-                    preparedStatement.setString(1, request.getParameter("password"));
-                    preparedStatement.setString(2, request.getParameter("name"));
-                    preparedStatement.setString(3, request.getParameter("address"));
-                    preparedStatement.setString(4, request.getParameter("email"));
-                    preparedStatement.setString(5, request.getSession(false).getAttribute("username").toString());
-                    preparedStatement.executeUpdate();
-
-                    // Redirect to admin.jsp
-                    response.sendRedirect("admin.jsp");
-                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                    out.println(ex.toString());
-                }
             } //Admin Stock Servlet (Controling admin stock page)
             else if (request.getParameter("page").equals("adminstock")) {
 
