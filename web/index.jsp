@@ -15,7 +15,11 @@
         <!-- CSS -->
         <link rel="StyleSheet" type="text/css" href="CSS/bootstrap.css">
         <link rel="StyleSheet" type="text/css" href="CSS/index.css">
-        <!--        <link rel="StyleSheet" type="text/css" href="CSS/signup.css">-->
+        <link rel="StyleSheet" type="text/css" href="CSS/mainmenu.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/main-nav-bar.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/bootstrap.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/shelf.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/general.css">
 
     </head>
     <body>
@@ -48,6 +52,10 @@
                             <div class="row-fluid loginFooter">
                                 <a class="btn span3 offset3" data-toggle="modal" href="#myModal">Sign Up</a>
                                 <input class ="btn span3 login-button" type="submit" value="Login">
+                            </div>
+                            <div class="marginTop10px"></div>
+                            <div class="row-fluid offset3">
+                                <a data-toggle="modal" href="#forgetPassModal">forget password</a>
                             </div>
                         </form>
                     </div>
@@ -101,7 +109,7 @@
                                     <%= captchas.image()%>
                                 </div>
                                 <div class="span4">
-                                     <input type="text" name="captcha" id="captcha" style="width: 100%">
+                                    <input type="text" name="captcha" id="captcha" style="width: 100%">
                                 </div>
                             </div>
                         </div>
@@ -115,10 +123,37 @@
             </form>
         </div>
 
-        <!-- SCRIPT !!!  -->
-        <script type="text/javascript">
-            <jsp:include page="js/jquery.js" />
-            <jsp:include page="js/bootstrap.js" />
-        </script>       
-    </body>
+        <div class="modal fade hide" id="forgetPassModal">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>Please input your username</h3>
+            </div>
+            <form action="myServlet" method=post"">
+                <div class="modal-body">
+                    <div class="container-fluid marginpage">
+                        <div class="row-fluid">
+                            <input type="hidden" name="page" value="forgetpassword">
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    Username
+                                </div>
+                                <input type="text" class="" name="username" id="username">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="modal-footer">
+            <input type="submit" class="btn" value="Submit">
+            <input type="button" href="#" class="btn" data-dismiss="modal" value="Cancel">
+        </div>
+    </form>
+</div>
+
+<!-- SCRIPT !!!  -->
+<script type="text/javascript">
+    <jsp:include page="js/jquery.js" />
+    <jsp:include page="js/bootstrap.js" />
+</script>       
+</body>
 </html>

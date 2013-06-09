@@ -23,8 +23,9 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container" style="width: auto;">
-                    <a class="brand" href="shelf.jsp">IT Store</a>
-                    <ul class="nav" role="navigation">
+                    <a class="brand" href="mainmenu.jsp">IT Store</a>
+                    <ul class="nav pull-left" role="navigation">
+                        <li role="presentation" class="divider-vertical"></li>
                         <li class="dropdown pull-left">
                             <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
@@ -58,6 +59,7 @@
                                 </form>
                             </ul>
                         </li>
+                        <li role="presentation" class="divider-vertical"></li>
                         <li class="dropdown pull-left">
                             <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Software <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
@@ -90,6 +92,8 @@
                                 </form>
                             </ul>
                         </li>
+                    </ul>
+                    <ul class="nav pull-right">
                         <!--                        Search Box-->
                         <li class="pull-right">
                             <form class="navbar-search" action="myServlet" method="post">
@@ -97,7 +101,16 @@
                                 <input type="text" class="search-query" placeholder="Search" name="search" value="search">
                             </form>
                         </li>
+                        <li role="presentation" class="divider-vertical"></li>
+                        <li class="navbar-form pull-right">
+                            <form action="myServlet" method="post">
+                                <input type="hidden" name="page" value="logout">
+                                <input type="submit" class="btn logoutBtn" value="logout">
+                            </form>
+                        </li>
                     </ul>
+
+
                 </div>
             </div>
 

@@ -77,39 +77,55 @@ public class myServlet extends HttpServlet {
             } // Sign Up Notes: Havent use refactoring mode
             else if (request.getParameter(
                     "page").equals("signup")) {
-                                    // Construct the captchas object
-                    // Use same settings as in query.jsp
-                    CaptchasDotNet captchas = new captchas.CaptchasDotNet(request.getSession(true), "demo", "secret");
+                // Construct the captchas object
+                // Use same settings as in query.jsp
+                CaptchasDotNet captchas = new captchas.CaptchasDotNet(request.getSession(true), "demo", "secret");
 
-                    // Read the form values
-                    String captcha = request.getParameter("captcha");
+                // Read the form values
+                String captcha = request.getParameter("captcha");
 
-                    // Check captcha
-                    switch (captchas.check(captcha)) {
-                        case 's':
-                            // Fail
-                            response.sendRedirect("loginFailed.jsp");
-                            break;
-                        case 'm':
-                            // Fail
-                            response.sendRedirect("loginFailed.jsp");
-                            break;
-                        case 'w':
-                            // Fail
-                            response.sendRedirect("loginFailed.jsp");
-                            break;
-                        default:
-                            String username = request.getParameter("username");
-                            String password = request.getParameter("password");
-                            String name = request.getParameter("name");
-                            String address = request.getParameter("address");
-                            String email = request.getParameter("email");
-                            
-                            new DBManager().registerUser(username, password, name, address, email);
-                            response.sendRedirect("index.jsp");
-                            
-                    }
-            } //Categories Page 
+                // Check captcha
+                switch (captchas.check(captcha)) {
+                    case 's':
+                        // Fail
+                        response.sendRedirect("loginFailed.jsp");
+                        break;
+                    case 'm':
+                        // Fail
+                        response.sendRedirect("loginFailed.jsp");
+                        break;
+                    case 'w':
+                        // Fail
+                        response.sendRedirect("loginFailed.jsp");
+                        break;
+                    default:
+                        String username = request.getParameter("username");
+                        String password = request.getParameter("password");
+                        String name = request.getParameter("name");
+                        String address = request.getParameter("address");
+                        String email = request.getParameter("email");
+
+                        new DBManager().registerUser(username, password, name, address, email);
+                        response.sendRedirect("index.jsp");
+
+                }
+            } //logout button
+            else if (request.getParameter("page").equals("logout")) {
+                HttpSession session = request.getSession();
+                session.invalidate();
+                response.sendRedirect("index.jsp");
+            } //foget password  
+            else if(request.getParameter("page").equals("forgetpassword")){
+                String username = request.getParameter("username");
+                User user = new DBManager().getUserForgetPass(username);
+                String password = user.getPassword();
+                HttpSession session = request.getSession();
+                session.setAttribute("password", password);
+                response.sendRedirect("forgetPassword.jsp");
+                 
+            }
+            
+            //Categories Page 
             else if (request.getParameter("page").equals("categories")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
                 HttpSession session = request.getSession();

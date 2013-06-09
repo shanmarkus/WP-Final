@@ -247,6 +247,43 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public User getUserForgetPass(String username) {
+        User user = null;
+
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users;");
+            while (resultSet.next()) {
+                if (username.equals(resultSet.getString("username"))) {
+                    String ID = resultSet.getString("userID");
+                    String role = resultSet.getString("role");
+                    String usernametemp = resultSet.getString("username");
+                    String password = resultSet.getString("password");
+                    String name = resultSet.getString("name");
+                    String email = resultSet.getString("email");
+                    String address = resultSet.getString("address");
+                    user = new User(ID, role, usernametemp, password, name, address, email);
+
+                    break;
+                }
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return user;
+    }
 
     public User getUser(String userID) {
         User user = null;
