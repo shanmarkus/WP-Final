@@ -115,17 +115,22 @@ public class myServlet extends HttpServlet {
                 session.invalidate();
                 response.sendRedirect("index.jsp");
             } //foget password  
-            else if(request.getParameter("page").equals("forgetpassword")){
+            else if (request.getParameter("page").equals("forgetpassword")) {
                 String username = request.getParameter("username");
                 User user = new DBManager().getUserForgetPass(username);
                 String password = user.getPassword();
+                String wrongSearch = "User not found";
                 HttpSession session = request.getSession();
-                session.setAttribute("password", password);
-                response.sendRedirect("forgetPassword.jsp");
-                 
-            }
-            
-            //Categories Page 
+                out.println(password);
+                if (password.isEmpty()) {
+                    session.setAttribute("password", wrongSearch);
+                    response.sendRedirect("forgetPassword.jsp");
+                } else {
+                    session.setAttribute("password", password);
+                    response.sendRedirect("forgetPassword.jsp");
+                }
+
+            } //Categories Page 
             else if (request.getParameter("page").equals("categories")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
                 HttpSession session = request.getSession();

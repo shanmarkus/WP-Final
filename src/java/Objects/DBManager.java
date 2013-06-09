@@ -272,6 +272,8 @@ public class DBManager {
                     user = new User(ID, role, usernametemp, password, name, address, email);
 
                     break;
+                } else{
+                    user = new User("", "", "", "", "", "", "");
                 }
             }
 
