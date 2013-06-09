@@ -77,8 +77,7 @@ public class myServlet extends HttpServlet {
             } // Sign Up Notes: Havent use refactoring mode
             else if (request.getParameter(
                     "page").equals("signup")) {
-                try {
-                    // Construct the captchas object
+                                    // Construct the captchas object
                     // Use same settings as in query.jsp
                     CaptchasDotNet captchas = new captchas.CaptchasDotNet(request.getSession(true), "demo", "secret");
 
@@ -100,34 +99,16 @@ public class myServlet extends HttpServlet {
                             response.sendRedirect("loginFailed.jsp");
                             break;
                         default:
-                            // Success
-
-                            // Load the driver
-                            Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-                            // Connect to MySQL
-                            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, address, email) VALUES ( ?, ?, ?, ?, ?, ? );");
-
-                            // Add new user
-                            preparedStatement.setString(1, "user");
-                            preparedStatement.setString(2, request.getParameter("username"));
-                            preparedStatement.setString(3, request.getParameter("password"));
-                            preparedStatement.setString(4, request.getParameter("name"));
-                            preparedStatement.setString(5, request.getParameter("address"));
-                            preparedStatement.setString(6, request.getParameter("email"));
-                            preparedStatement.executeUpdate();
-
-                            // Close connection to database
-                            preparedStatement.close();
-                            connection.close();
-
-                            // Redirect to index.jsp
+                            String username = request.getParameter("username");
+                            String password = request.getParameter("password");
+                            String name = request.getParameter("name");
+                            String address = request.getParameter("address");
+                            String email = request.getParameter("email");
+                            
+                            new DBManager().registerUser(username, password, name, address, email);
                             response.sendRedirect("index.jsp");
+                            
                     }
-                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                    out.println(ex.toString());
-                }
             } //Categories Page 
             else if (request.getParameter("page").equals("categories")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");

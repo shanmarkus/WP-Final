@@ -4,6 +4,7 @@
  */
 package Objects;
 
+import captchas.CaptchasDotNet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -93,7 +94,7 @@ public class DBManager {
                     String nametemp = resultSet.getString("name");
                     String address = resultSet.getString("address");
                     String email = resultSet.getString("email");
-                    user = new User(ID,role,usernametemp,passwordtemp,nametemp,address,email);
+                    user = new User(ID, role, usernametemp, passwordtemp, nametemp, address, email);
                     break;
                 }
             }
@@ -187,6 +188,38 @@ public class DBManager {
         }
 
         return result;
+    }
+
+    public void registerUser(String username, String password, String name, String address, String email) {
+        try {
+
+            // Success
+
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(role, username, password, name, address, email) VALUES ( ?, ?, ?, ?, ?, ? );");
+
+            // Add new user
+            preparedStatement.setString(1, "user");
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, name);
+            preparedStatement.setString(5, address);
+            preparedStatement.setString(6, email);
+            preparedStatement.executeUpdate();
+
+            // Close connection to database
+            preparedStatement.close();
+            connection.close();
+
+            // Redirect to index.jsp
+
+
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+        }
     }
 
     public void addUser(User user) {
