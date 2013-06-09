@@ -9,9 +9,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Forget Password</title>
+        <link rel="StyleSheet" type="text/css" href="CSS/bootstrap.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/index.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/mainmenu.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/main-nav-bar.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/bootstrap.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/shelf.css">
+        <link rel="StyleSheet" type="text/css" href="CSS/general.css">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1> Your Password is <%=session.getAttribute("password")%></h1>
+        <br>
+        <h1> Now <a href="index.jsp">Go back</a> and buy all stuff !!! </h1>
     </body>
 </html>
