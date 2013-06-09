@@ -38,8 +38,8 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public ArrayList<User> searchSpesificUser (String userdescription) {
+
+    public ArrayList<User> searchSpesificUser(String userdescription) {
         ArrayList<User> users = new ArrayList<>();
 
         try {
@@ -71,6 +71,41 @@ public class DBManager {
         }
 
         return users;
+    }
+
+    public User checkUserLogin(String username, String password) {
+        User user = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            // Connect to MySQL localhost
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            Statement statement = connection.createStatement();
+
+            // Search for the user
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM users;");
+            while (resultSet.next()) {
+                if (resultSet.getString("username").equals(username) && resultSet.getString("password").equals(password)) {
+                    String ID = resultSet.getString("userID");
+                    String role = resultSet.getString("role");
+                    String usernametemp = resultSet.getString("username");
+                    String passwordtemp = resultSet.getString("password");
+                    String nametemp = resultSet.getString("name");
+                    String address = resultSet.getString("address");
+                    String email = resultSet.getString("email");
+                    user = new User(ID,role,usernametemp,passwordtemp,nametemp,address,email);
+                    break;
+                }
+            }
+
+            // Close connection to database
+            statement.close();
+            connection.close();
+
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+        }
+        return user;
+
     }
 
     public void deleteProduct(String productID) {
@@ -139,7 +174,10 @@ public class DBManager {
 
             // Search for the user
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "';");
-            while (resultSet.next()) {
+            if (resultSet.next()) {
+                result = true;
+            } else {
+                result = false;
             }
 
             statement.close();
@@ -214,11 +252,10 @@ public class DBManager {
 
         return user;
     }
-    
+
     //Checkout Database Function
-    
-    public void updateStock(String productID, Integer stocknew){
-         try {
+    public void updateStock(String productID, Integer stocknew) {
+        try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -230,20 +267,19 @@ public class DBManager {
             preparedStatement.setString(1, stocknew.toString());
             preparedStatement.setString(2, productID);
             preparedStatement.executeUpdate();
-           
+
             //connection closed
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }
-    
+
     //invoice management 
-    
-    public ArrayList<Invoice> getAllInvoice(){
-        
+    public ArrayList<Invoice> getAllInvoice() {
+
         ArrayList<Invoice> invoices = new ArrayList<>();
 
         try {
@@ -260,8 +296,8 @@ public class DBManager {
                 String invoiceID = resultSet.getString("invoiceID");
                 Integer invoiceIDTemp = Integer.parseInt(invoiceID);
                 String log = resultSet.getString("log");
-                String userID = resultSet.getString("userID");    
-                invoices.add(new Invoice(invoiceIDTemp,userID,log));
+                String userID = resultSet.getString("userID");
+                invoices.add(new Invoice(invoiceIDTemp, userID, log));
             }
 
             // Close connection to database
@@ -272,11 +308,11 @@ public class DBManager {
         }
 
         return invoices;
-    
+
     }
-    
-    public Invoice getInvoice(String userID){
-         Invoice invoice = null;
+
+    public Invoice getInvoice(String userID) {
+        Invoice invoice = null;
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -292,7 +328,7 @@ public class DBManager {
                     String invoiceNumber = resultSet.getString("invoiceID");
                     String log = resultSet.getString("log");
                     Integer tempInvoiceNumber = Integer.parseInt(invoiceNumber);
-                    invoice = new Invoice(tempInvoiceNumber,userID,log);
+                    invoice = new Invoice(tempInvoiceNumber, userID, log);
                     break;
                 }
             }
@@ -305,8 +341,8 @@ public class DBManager {
         }
         return invoice;
     }
-    
-    public void createInvoice(Integer userID,String log){
+
+    public void createInvoice(Integer userID, String log) {
         try {
             // Load the driver
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -321,7 +357,7 @@ public class DBManager {
             preparedStatement.setString(1, userID.toString());
             preparedStatement.setString(2, log);
             preparedStatement.executeUpdate();
-           
+
             //connection closed
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
@@ -375,7 +411,7 @@ public class DBManager {
             // Connect to MySQL
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO test (category,subcategory,name,description,stock,price,pictureURL) VALUES (?, ?, ?, ?, ?, ?, ?);");
-            
+
             // Add new user
             preparedStatement.setString(1, category);
             preparedStatement.setString(2, subcategory);
@@ -410,7 +446,7 @@ public class DBManager {
             preparedStatement.setString(5, pictureURL);
             preparedStatement.setString(6, productID);
             preparedStatement.executeUpdate();
-           
+
             //connection closed
             connection.close();
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
