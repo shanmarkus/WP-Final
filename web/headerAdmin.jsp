@@ -16,6 +16,9 @@
 <%@page import="Objects.User"%>
 <%@page import="Objects.Product"%>
 <%@page import="Objects.DBManager"%>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

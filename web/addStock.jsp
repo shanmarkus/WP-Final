@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <%@ include file="headerAdmin.jsp" %>
     <form action="myServlet" method="POST">
-            <input type="hidden" value="addStock" name="page">
+            <input type="hidden" value="addStock" name="page" enctype="multipart/form-data">
             <table style="border-collapse: collapse; width: 320px">
                 <tr>
                     <td>Category:</td>
