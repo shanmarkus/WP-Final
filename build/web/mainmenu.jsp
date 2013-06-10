@@ -9,6 +9,20 @@
 <!DOCTYPE html>
 <%@ include file="header.jsp" %>
 
+<div class="row">
+    <div class="span3">
+        <h4 class="span12">Hello <%= session.getAttribute("name")%>!</h4>
+    </div>
+    <div class="span3 offset6"> 
+        <%
+    ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+    out.println("Items in cart: " + cart.size());
+    out.println("<a href=\"checkout.jsp\">Check out</a>");
+        %> 
+    </div>
+
+</div>
+
 
 <div id="myCarousel" class="carousel slide" data-interval="3000">
     <ol class="carousel-indicators">

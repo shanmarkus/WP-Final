@@ -12,7 +12,7 @@
 <script type="text/javascript">
     <jsp:include page="js/jquery.js" />
     <jsp:include page="js/bootstrap.js" />
-        <jsp:include page="js/myJs.js" />
+    <jsp:include page="js/myJs.js" />
 </script>       
 </body>
 </html>

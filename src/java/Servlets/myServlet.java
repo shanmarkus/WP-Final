@@ -44,7 +44,7 @@ public class myServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        
         try {
 
             //Login Page && Sign Up Page
@@ -55,8 +55,8 @@ public class myServlet extends HttpServlet {
                 String password = request.getParameter("password");
                 boolean status = new DBManager().checkUser(username, password);
                 User user = new DBManager().checkUserLogin(username, password);
-
-
+                
+                
                 if (status == true) {
                     String name = user.getName();
                     String role = user.getRole();
@@ -75,8 +75,8 @@ public class myServlet extends HttpServlet {
                 } else {
                     response.sendRedirect("loginFailed.jsp");
                 }
-
-
+                
+                
             } // Sign Up Notes: Havent use refactoring mode
             else if (request.getParameter(
                     "page").equals("signup")) {
@@ -107,10 +107,10 @@ public class myServlet extends HttpServlet {
                         String name = request.getParameter("name");
                         String address = request.getParameter("address");
                         String email = request.getParameter("email");
-
+                        
                         new DBManager().registerUser(username, password, name, address, email);
                         response.sendRedirect("index.jsp");
-
+                    
                 }
             } //logout button
             else if (request.getParameter("page").equals("logout")) {
@@ -132,7 +132,7 @@ public class myServlet extends HttpServlet {
                 new DBManager().updateUser(password, name, address, email, username);
                 boolean status = new DBManager().checkUser(username, password);
                 User user = new DBManager().checkUserLogin(username, password);
-
+                
                 String role = user.getRole();
                 String userID = user.getUserID();
                 HttpSession session = request.getSession();
@@ -140,7 +140,7 @@ public class myServlet extends HttpServlet {
                 session.setAttribute("userID", userID);
                 session.setAttribute("username", username);
                 response.sendRedirect("mainmenu.jsp");
-
+                
             } //foget password  
             else if (request.getParameter("page").equals("forgetpassword")) {
                 String username = request.getParameter("username");
@@ -156,20 +156,20 @@ public class myServlet extends HttpServlet {
                     session.setAttribute("password", password);
                     response.sendRedirect("forgetPassword.jsp");
                 }
-
+                
             } //Categories Page 
             else if (request.getParameter("page").equals("categories")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
                 HttpSession session = request.getSession();
                 String category = request.getParameter("category");
-
+                
                 if (category.equals("hardware")) {
                     String subcategory = request.getParameter("subcategory");
                     if (subcategory.equals("processor")) {
                         session.setAttribute("category", category);
                         session.setAttribute("subcategory", subcategory);
                         response.sendRedirect("shelf.jsp");
-
+                        
                     } else if (subcategory.equals("motherboard")) {
                         //find in database that have hardware categery and subcategory motherboard
                         session.setAttribute("category", category);
@@ -188,7 +188,7 @@ public class myServlet extends HttpServlet {
                     } else {
                         response.sendRedirect("shelf.jsp");
                     }
-
+                    
                 } else if (category.equals("software")) {
                     String subcategory = request.getParameter("subcategory");
                     if (subcategory.equals("game")) {
@@ -201,15 +201,15 @@ public class myServlet extends HttpServlet {
                         //find in database that have hardware category and subcategory vga card
                     }
                 }
-
-
+                
+                
             } //Shelf Controller 
             //Buy Product
             else if (request.getParameter(
                     "page").equals("buy")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
                 Product product = new DBManager().getProduct(request.getParameter("productID"));
-
+                
                 Boolean exists = false;
                 for (ProductInCart p : cart) {
                     if (p.getProductID().equals(product.getProductID())) {
@@ -217,19 +217,19 @@ public class myServlet extends HttpServlet {
                         exists = true;
                     }
                 }
-
+                
                 if (!exists) {
                     ProductInCart newProduct = new ProductInCart(product.getProductID(), product.getCategory(), product.getSubcategory(), product.getName(), product.getDescription(), product.getStock(), product.getPrice(), product.getPictureURL(), Integer.parseInt(request.getParameter("amount")));
                     cart.add(newProduct);
                 }
-
+                
                 response.sendRedirect("shelf.jsp");
             } //Admin Servlet
             //
             else if (request.getParameter("page").equals("adminsearchbar")) {
                 String searchtype = request.getParameter("searchtype");
                 String search = request.getParameter("search");
-
+                
                 if (searchtype.equals("user")) {
                     HttpSession session = request.getSession();
                     session.setAttribute("searchtype", searchtype);
@@ -243,7 +243,7 @@ public class myServlet extends HttpServlet {
             } //Admin Header Servlet Controller 
             else if (request.getParameter("page").equals("adminheader")) {
                 String action = request.getParameter("action");
-
+                
                 if (action.equals("stocksystem")) {
                     response.sendRedirect("adminStock.jsp");
                 } else if (action.equals("usersetting")) {
@@ -251,7 +251,7 @@ public class myServlet extends HttpServlet {
                 } else {
                     response.sendRedirect("adminTransaction.jsp");
                 }
-
+                
             } //Admin.jsp Servlet Controller Managing User Setting 
             else if (request.getParameter("page").equals("admin")) {
                 String command = request.getParameter("command");
@@ -276,13 +276,13 @@ public class myServlet extends HttpServlet {
 
             } //Admin Stock Servlet (Controling admin stock page)
             else if (request.getParameter("page").equals("adminstock")) {
-
+                
                 if (request.getParameter("command").equals("delete")) {
-
+                    
                     new DBManager().deleteProduct(request.getParameter("productID"));
                     out.println("FAKK ERROR");
                     response.sendRedirect("adminStock.jsp");
-
+                    
                 } else if (request.getParameter("command").equals("edit")) {
                     String productID = request.getParameter("productID");
                     String name = request.getParameter("name");
@@ -290,9 +290,9 @@ public class myServlet extends HttpServlet {
                     session.setAttribute("name", name);
                     session.setAttribute("productID", productID);
                     response.sendRedirect("editStock.jsp");
-
+                    
                 }
-
+                
             } else if (request.getParameter("page").equals("editStock")) {
                 String productID = request.getParameter("productID");
                 String name = request.getParameter("name");
@@ -302,7 +302,7 @@ public class myServlet extends HttpServlet {
                 String pictureURL = request.getParameter("pictureURL");
                 new DBManager().editProduct(name, description, stock, price, pictureURL, productID);
                 response.sendRedirect("adminStock.jsp");
-
+                
             } else if (request.getParameter("page").equals("addStock")) {
                 String category = request.getParameter("category");
                 String subcategory = request.getParameter("subcategory");
@@ -318,71 +318,75 @@ public class myServlet extends HttpServlet {
             else if (request.getParameter(
                     "page").equals("delete")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-
+                
                 for (int i = 0; i < cart.size(); i++) {
                     if (cart.get(i).getProductID().equals(request.getParameter("productID"))) {
                         cart.remove(i);
                         break;
                     }
                 }
-
+                
                 response.sendRedirect("checkout.jsp");
             } // delete all product 
             else if (request.getParameter(
                     "page").equals("deleteall")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-
+                
                 cart.clear();
-
+                
                 response.sendRedirect("checkout.jsp");
-
-
+                
+                
             } //Edit Amount of items
             else if (request.getParameter(
                     "page").equals("editamount")) {
                 ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-
+                
                 for (int i = 0; i < cart.size(); i++) {
                     if (cart.get(i).getProductID().equals(request.getParameter("productID"))) {
                         Integer newamount = Integer.parseInt(request.getParameter("newamount"));
-
+                        
                         if (newamount == 0) {
                             cart.remove(i);
                         } else {
                             cart.get(i).setAmount(Integer.parseInt(request.getParameter("newamount")));
                         }
-
+                        
                         break;
                     }
                 }
-
+                
                 response.sendRedirect("checkout.jsp");
             } //If costumer already finished their buy then send to confirm.jsp
             else if (request.getParameter(
                     "page").equals("confirm")) {
-
+                
                 response.sendRedirect("confirm.jsp");
-
-
+                
+                
             } else if (request.getParameter("page").equals("confirmtransaction")) {
                 String listlog = request.getParameter("listlog");
                 String userID = request.getParameter("userID");
                 Integer userIDtemp = Integer.parseInt(userID);
                 new DBManager().createInvoice(userIDtemp, listlog);
-
+                
                 HttpSession session = request.getSession();
                 session.setAttribute("userID", userID);
 
                 //sent redirect
                 response.sendRedirect("invoice.jsp");
-            } //Search bar function
+            } else if (request.getParameter("page").equals("everythingisdone")) {
+                HttpSession session = request.getSession();
+                session.setAttribute("cart", new ArrayList<ProductInCart>());
+                response.sendRedirect("mainmenu.jsp");
+            }//Search bar function
             else if (request.getParameter(
                     "page").equals("searchbar")) {
                 HttpSession session = request.getSession();
                 String search = request.getParameter("search");
                 session.setAttribute("search", search);
                 response.sendRedirect("searchResult.jsp");
-
+                
             }
         } finally {
             out.close();
