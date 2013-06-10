@@ -232,15 +232,15 @@ public class myServlet extends HttpServlet {
             else if (request.getParameter("page").equals("adminsearchbar")) {
                 String searchtype = request.getParameter("searchtype");
                 String search = request.getParameter("search");
+                HttpSession session = request.getSession();
 
                 if (searchtype.equals("user")) {
-                    HttpSession session = request.getSession();
                     session.setAttribute("searchtype", searchtype);
                     session.setAttribute("search", search);
                     response.sendRedirect("searchResultAdmin.jsp");
                 } else if (searchtype.equals("product")) {
-                    HttpSession session = request.getSession();
                     session.setAttribute("searchtype", searchtype);
+                    session.setAttribute("search", search);
                     response.sendRedirect("searchResultAdmin.jsp");
                 }
             } //Admin Header Servlet Controller 
@@ -275,7 +275,7 @@ public class myServlet extends HttpServlet {
                 String email = request.getParameter("email");
                 String username = request.getParameter("username");
                 new DBManager().updateUser(password, name, address, email, username);
-                //response.sendRedirect("admin.jsp");
+                response.sendRedirect("admin.jsp");
 
             } //Admin Stock Servlet (Controling admin stock page)
             else if (request.getParameter("page").equals("adminstock")) {

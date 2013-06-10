@@ -73,6 +73,7 @@
                 }
         } else {
             ArrayList<Product> products = new DBManager().searchSpesificProducts(search + "%");
+            out.println(search);
             for (Product p : products) {
                     out.println("<table border=1>");
                     out.println("<thead>");
