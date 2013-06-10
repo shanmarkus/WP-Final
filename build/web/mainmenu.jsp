@@ -65,7 +65,7 @@
 </div>
 
 <div class="clearer">
-    
+
 </div>
 
 <!--footer page -->
@@ -76,6 +76,16 @@
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     Lorem 
+</div>
+
+<div class="row-fluid marginTop20px">
+    <h2>This Is Flash</h2>
+    <object type="application/x-shockwave-flash" data="./slideshow/slideshow.swf" width="600" height="250">
+        <param name="menu" value="false" />
+        <param name="wmode" value="transparent" />
+        <param name="flashvars" value="xml=./slideshow/slideshow.xml&amp;dir=./slideshow/" />
+        <param name="movie" value="./slideshow/slideshow.swf" />
+    </object>
 </div>
 
 <hr>
