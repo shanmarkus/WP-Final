@@ -11,14 +11,7 @@ import Objects.User;
 import captchas.CaptchasDotNet;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -193,14 +186,23 @@ public class myServlet extends HttpServlet {
                 } else if (category.equals("software")) {
                     String subcategory = request.getParameter("subcategory");
                     if (subcategory.equals("game")) {
-                        //find in database that have hardware category and subcategory processors
-                    } else if (subcategory.equals("videophoto")) {
-                        //find in database that have hardware categery and subcategory motherboard
-                    } else if (subcategory.equals("antivirus")) {
-                        //find in database that have hardware category and subcategory harddisk 
-                    } else if (subcategory.equals("other")) {
-                        //find in database that have hardware category and subcategory vga card
-                    }
+                        session.setAttribute("category", category);
+                        session.setAttribute("subcategory", subcategory);
+                        response.sendRedirect("shelf.jsp");
+                    } else if (subcategory.equals("videoandphoto")) {
+                       session.setAttribute("category", category);
+                        session.setAttribute("subcategory", subcategory);
+                        response.sendRedirect("shelf.jsp");
+                    } 
+//                    else if (subcategory.equals("antivirus")) {
+//                        session.setAttribute("category", category);
+//                        session.setAttribute("subcategory", subcategory);
+//                        response.sendRedirect("shelf.jsp");
+//                    } else if (subcategory.equals("other")) {
+//                        session.setAttribute("category", category);
+//                        session.setAttribute("subcategory", subcategory);
+//                        response.sendRedirect("shelf.jsp");
+//                    }
                 }
 
 

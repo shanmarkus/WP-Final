@@ -39,28 +39,27 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void updateUser (String password, String name, String address, String email,String username){
-              try {
-                    // Load the driver
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                    // Connect to MySQL
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
-                    PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET password=?, name=?, address=?, email=? WHERE username=?;");
-                    
-                    // Update the data
-                    preparedStatement.setString(1, password);
-                    preparedStatement.setString(2, name);
-                    preparedStatement.setString(3, address);
-                    preparedStatement.setString(4, email);
-                    preparedStatement.setString(5, username);
-                    preparedStatement.executeUpdate();
+    public void updateUser(String password, String name, String address, String email, String username) {
+        try {
+            // Load the driver
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-                
-                } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-                    
-                }
+            // Connect to MySQL
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/ITStore", "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users SET password=?, name=?, address=?, email=? WHERE username=?;");
+
+            // Update the data
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, username);
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+        }
     }
 
     public ArrayList<User> searchSpesificUser(String userdescription) {
@@ -270,6 +269,7 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public User getUserForgetPass(String username) {
         User user = null;
 
@@ -295,7 +295,7 @@ public class DBManager {
                     user = new User(ID, role, usernametemp, password, name, address, email);
 
                     break;
-                } else{
+                } else {
                     user = new User("", "", "", "", "", "", "");
                 }
             }

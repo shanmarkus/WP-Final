@@ -13,7 +13,6 @@
     
 %>
 
-        WILL EMBED FILE FLASH HERE 
         
         <h1>Thank you for your buying</h1>
         <br>
@@ -21,8 +20,7 @@
         <br>
         <form action="myServlet" method="post">
             <input type="hidden" name="page" value="everythingisdone">
-            <input type="submit" name="submit" value="Go back to main menu">
+            <input type="submit" class="btn" name="submit" value="Go back to main menu">
         </form>
-        <h4>Please click <a href="mainmenu.jsp"> here </a> to go to main menu</h4>
     </body>
 </html>

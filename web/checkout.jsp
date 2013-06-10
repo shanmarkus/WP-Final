@@ -24,7 +24,7 @@
     <thead>
     <td>&nbsp;</td>
     <td>Name</td>
-    <td>Description</td>
+<!--    <td>Description</td>-->
     <td>Price</td>
     <td>Amount</td>
     <td>Total</td>
@@ -40,9 +40,9 @@
 
         for (ProductInCart p : productsInCart) {
             out.println("<tr>");
-            out.println("<td><img src=\"" + p.getPictureURL() + "\" class=\"span3\" style=\"height: 25%\" !important></td>");
+            out.println("<td><img class=\"imageWrapper\" src=\"" + p.getPictureURL() + "\" class=\"span3\" style=\"height: 25%\" !important></td>");
             out.println("<td>" + p.getName() + "</td>");
-            out.println("<td>" + p.getDescription() + "</td>");
+//            out.println("<td>" + p.getDescription() + "</td>");
             out.println("<td>" + p.getPrice() + "</td>");
             out.println("<td>" + p.getAmount() + "</td>");
             out.println("<td>" + p.getAmount() * p.getPrice() + "</td>");

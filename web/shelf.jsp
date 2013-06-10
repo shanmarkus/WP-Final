@@ -41,7 +41,10 @@
                         out.println("<div class=\"row\">");
                         
                             out.println("<div class=\"span5\">");
-                                   out.println("<img src=\"" + p.getPictureURL() + "\" height=\"20%\">");
+                                out.println("<div class=\"span6\">");
+                                //please resize to max width and max height
+                                   out.println("<img class=\"imageWrapper\" src=\"" + p.getPictureURL() + "\">");
+                                out.println("</div>");
                             out.println("</div>");
                         
                             out.println("<div class=\"span4\">");

@@ -73,10 +73,10 @@
                                 <form action="myServlet" method="post">
                                     <input type="hidden" name="page" value="categories">
                                     <input type="hidden" name="category" value="software">
-                                    <input type="hidden" name="subcategory" value="videophoto">
+                                    <input type="hidden" name="subcategory" value="videoandphoto">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Video and Photo</a></li>
                                 </form>
-                                <li role="presentation" class="divider"></li>
+<!--                                <li role="presentation" class="divider"></li>
                                 <form action="myServlet" method="post">
                                     <input type="hidden" name="page" value="categories">
                                     <input type="hidden" name="category" value="software">
@@ -89,7 +89,7 @@
                                     <input type="hidden" name="category" value="software">
                                     <input type="hidden" name="subcategory" value="other">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Other</a></li>
-                                </form>
+                                </form>-->
                             </ul>
                         </li>
                     </ul>
