@@ -5,5 +5,48 @@
 
 function cancelConfirmPage()
 {
-    window.location = 'shelf.jsp';   
+    window.location = 'shelf.jsp';
+}
+
+
+function validateForm()
+{
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var name = document.getElementById("name").value;
+    var address = document.getElementById("address").value;
+    var email = document.getElementById("email").value;
+    var captcha = document.getElementById("captcha").value;
+
+    if (username == null | username == ""){
+        alert("username must be filled out");
+        document.getElementById("username").focus();
+    }
+    
+    if (password == null | password == ""){
+        alert("password must be filled out");
+        document.getElementById("password").focus();
+    }
+    
+    if (name == null | name == ""){
+        alert("name must be filled out");
+        document.getElementById("name").focus();
+    }
+    
+    if (address == null | address == ""){
+        alert("address must be filled out");
+        document.getElementById("address").focus();
+    }
+    
+    if (email == null | email == ""){
+        alert("email must be filled out");
+        document.getElementById("password").focus();
+    }
+    
+    if (captcha == null | captcha == ""){
+        alert("captcha must be filled out");
+        document.getElementById("captcha").focus();
+    }
+    
+   
 }
