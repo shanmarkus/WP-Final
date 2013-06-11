@@ -21,31 +21,37 @@ function validateForm()
     if (username == null | username == ""){
         alert("username must be filled out");
         document.getElementById("username").focus();
+        return false;
     }
     
     if (password == null | password == ""){
         alert("password must be filled out");
         document.getElementById("password").focus();
+        return false;
     }
     
     if (name == null | name == ""){
         alert("name must be filled out");
         document.getElementById("name").focus();
+        return false;
     }
     
     if (address == null | address == ""){
         alert("address must be filled out");
         document.getElementById("address").focus();
+        return false;
     }
     
     if (email == null | email == ""){
         alert("email must be filled out");
         document.getElementById("password").focus();
+        return false;
     }
     
     if (captcha == null | captcha == ""){
         alert("captcha must be filled out");
         document.getElementById("captcha").focus();
+        return false;
     }
     
    

@@ -68,7 +68,7 @@
                 <button class="close" data-dismiss="modal">×</button>
                 <h3>Please Fill this form</h3>
             </div>
-            <form action="myServlet">
+            <form action="myServlet" onsubmit="return validateForm();">
                 <div class="modal-body">
                     <div class="container-fluid marginpage">
                         <div class="row-fluid">
@@ -154,6 +154,7 @@
 <script type="text/javascript">
     <jsp:include page="js/jquery.js" />
     <jsp:include page="js/bootstrap.js" />
+    <jsp:include page="js/myJs.js" />
 </script>       
 </body>
 </html>
