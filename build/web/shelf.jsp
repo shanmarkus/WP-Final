@@ -30,7 +30,7 @@
             out.println(subcategory);
 //            ArrayList<Product> products = new DBManager().getAllProducts();
             ArrayList<Product> products = new DBManager().getAllSpesificProducts(category,subcategory);
-            out.println(products.size());
+//            out.println(products.size());
            
             for (Product p : products) {
                 Integer tempStock = p.getStock();
