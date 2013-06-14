@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services/>
+  <clients>
+    <client name="CurrencyConvertor.asmx">
+      <wsdl-url>file:/Users/Shan/Desktop/Application%20Services/CurrencyClient/xml-resources/web-service-references/CurrencyConvertor/wsdl/www.webservicex.net/CurrencyConvertor.asmx.wsdl</wsdl-url>
+      <local-wsdl-file>CurrencyConvertor.asmx.wsdl</local-wsdl-file>
+      <package-name>net.webservicex</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>file:/Users/Shan/Desktop/Application%20Services/CurrencyClient/xml-resources/web-service-references/CurrencyConvertor/wsdl/www.webservicex.net/CurrencyConvertor.asmx.wsdl</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+  </clients>
+</jax-ws>
