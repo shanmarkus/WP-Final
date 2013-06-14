@@ -21,44 +21,44 @@ public class CurrencyClient {
 //        Scanner scan = new Scanner(System.in);
 //        System.out.println("Please input : ");
 //        SAR = scan.nextDouble();
-        net.webservicex.Currency fromCurrency = net.webservicex.Currency.EUR;
-        net.webservicex.Currency toCurrency = net.webservicex.Currency.IDR;
+        wsnetx.Currency fromCurrency = wsnetx.Currency.EUR;
+        wsnetx.Currency toCurrency = wsnetx.Currency.IDR;
         
         double result = conversionRate(fromCurrency, toCurrency);
         System.out.println("Ratio: " + result);
-        Converter run = new Converter();
+        CurrencyClient.Converter run = new CurrencyClient.Converter();
        
         
     }
 
     public double convertUSDtoRupiah(String input) {
         double inputD=Double.parseDouble(input);
-        net.webservicex.Currency fromCurrency = net.webservicex.Currency.USD;
-        net.webservicex.Currency toCurrency = net.webservicex.Currency.IDR;
+        wsnetx.Currency fromCurrency = wsnetx.Currency.USD;
+        wsnetx.Currency toCurrency = wsnetx.Currency.IDR;
         return  inputD * conversionRate(fromCurrency,toCurrency);
     }
     public double convertEurotoRupiah(String input) {
         double inputD=Double.parseDouble(input);
-        net.webservicex.Currency fromCurrency = net.webservicex.Currency.EUR;
-        net.webservicex.Currency toCurrency = net.webservicex.Currency.IDR;
+        wsnetx.Currency fromCurrency = wsnetx.Currency.EUR;
+        wsnetx.Currency toCurrency = wsnetx.Currency.IDR;
         return  inputD * conversionRate(fromCurrency,toCurrency);
     }
     public double convertRupiahtoUSD(String input) {
         double inputD=Double.parseDouble(input);
-        net.webservicex.Currency fromCurrency = net.webservicex.Currency.IDR;
-        net.webservicex.Currency toCurrency = net.webservicex.Currency.USD;
+        wsnetx.Currency fromCurrency = wsnetx.Currency.IDR;
+        wsnetx.Currency toCurrency = wsnetx.Currency.USD;
         return  inputD * conversionRate(fromCurrency,toCurrency);
     }
     public double convertRupiahtoEuro(String input) {
         double inputD=Double.parseDouble(input);
-        net.webservicex.Currency fromCurrency = net.webservicex.Currency.IDR;
-        net.webservicex.Currency toCurrency = net.webservicex.Currency.EUR;
+        wsnetx.Currency fromCurrency = wsnetx.Currency.IDR;
+        wsnetx.Currency toCurrency = wsnetx.Currency.EUR;
         return  inputD * conversionRate(fromCurrency,toCurrency);
     }
 
-    private static double conversionRate(net.webservicex.Currency fromCurrency, net.webservicex.Currency toCurrency) {
-        net.webservicex.CurrencyConvertor service = new net.webservicex.CurrencyConvertor();
-        net.webservicex.CurrencyConvertorSoap port = service.getCurrencyConvertorSoap12();
+    private static double conversionRate(wsnetx.Currency fromCurrency, wsnetx.Currency toCurrency) {
+        wsnetx.CurrencyConvertor service = new wsnetx.CurrencyConvertor();
+        wsnetx.CurrencyConvertorSoap port = service.getCurrencyConvertorSoap12();
         return port.conversionRate(fromCurrency, toCurrency);
     }
 

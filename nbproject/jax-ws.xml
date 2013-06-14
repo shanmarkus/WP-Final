@@ -5,7 +5,7 @@
     <client name="CurrencyConvertor.asmx">
       <wsdl-url>file:/Users/Shan/Desktop/Application%20Services/CurrencyClient/xml-resources/web-service-references/CurrencyConvertor/wsdl/www.webservicex.net/CurrencyConvertor.asmx.wsdl</wsdl-url>
       <local-wsdl-file>CurrencyConvertor.asmx.wsdl</local-wsdl-file>
-      <package-name>net.webservicex</package-name>
+      <package-name forceReplace="true">wsnetx</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -27,6 +27,10 @@
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>
           <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>wsnetx</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

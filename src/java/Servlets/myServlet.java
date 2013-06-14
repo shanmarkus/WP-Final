@@ -9,6 +9,7 @@ import Objects.Product;
 import Objects.ProductInCart;
 import Objects.User;
 import captchas.CaptchasDotNet;
+import currencyclient.CurrencyClient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -383,6 +384,15 @@ public class myServlet extends HttpServlet {
                 session.setAttribute("cart", new ArrayList<ProductInCart>());
                 response.sendRedirect("mainmenu.jsp");
             }//Search bar function
+            else if(request.getParameter("page").equals("converterAS")){
+                CurrencyClient converter = new CurrencyClient();
+                String inpute = request.getParameter("input1");
+                double res = converter.convertUSDtoRupiah(inpute);
+                HttpSession session = request.getSession();
+                session.setAttribute("res", res);
+                response.sendRedirect("mainmenu.jsp");
+                
+            }
             else if (request.getParameter(
                     "page").equals("searchbar")) {
                 HttpSession session = request.getSession();

@@ -28,7 +28,7 @@
     </target>
     <target name="wsimport-client-CurrencyConvertor.asmx" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/CurrencyConvertor.asmx"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CurrencyConvertor.asmx" destdir="${build.generated.dir}/jax-wsCache/CurrencyConvertor.asmx" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/CurrencyConvertor.asmx/wsdl/CurrencyConvertor.asmx.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="file:/Users/Shan/Desktop/Application%20Services/CurrencyClient/xml-resources/web-service-references/CurrencyConvertor/wsdl/www.webservicex.net/CurrencyConvertor.asmx.wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CurrencyConvertor.asmx" destdir="${build.generated.dir}/jax-wsCache/CurrencyConvertor.asmx" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/CurrencyConvertor.asmx/wsdl/CurrencyConvertor.asmx.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" wsdlLocation="file:/Users/Shan/Desktop/Application%20Services/CurrencyClient/xml-resources/web-service-references/CurrencyConvertor/wsdl/www.webservicex.net/CurrencyConvertor.asmx.wsdl" xnocompile="true" xendorsed="true" package="wsnetx">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/CurrencyConvertor.asmx/wsdl/CurrencyConvertor.asmx.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/CurrencyConvertor.asmx"/>
         </wsimport>
@@ -39,7 +39,7 @@
         </copy>
     </target>
     <target name="wsimport-client-clean-CurrencyConvertor.asmx" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/net/webservicex"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/wsnetx"/>
         <delete dir="${build.generated.dir}/jax-wsCache/CurrencyConvertor.asmx"/>
     </target>
     <target name="wsimport-client-generate" depends="wsimport-client-CurrencyConvertor.asmx"/>

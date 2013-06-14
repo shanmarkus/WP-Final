@@ -64,11 +64,6 @@
             </div>
         </div>
         
-        <div class="row-fluid">
-            <% Converter a = new Converter();
-            a.run();
-            %>
-        </div>
 
         <div class="modal fade hide" id="myModal">
             <div class="modal-header">

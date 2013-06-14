@@ -19,6 +19,16 @@
         <link rel="StyleSheet" type="text/css" href="CSS/general.css">
     </head>
     <body class="container">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
         <!--        main navigation menu-->
         <div class="navbar">
             <div class="navbar-inner">
@@ -76,20 +86,20 @@
                                     <input type="hidden" name="subcategory" value="videoandphoto">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Video and Photo</a></li>
                                 </form>
-<!--                                <li role="presentation" class="divider"></li>
-                                <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="categories">
-                                    <input type="hidden" name="category" value="software">
-                                    <input type="hidden" name="subcategory" value="antivirus">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Anti Virus</a></li>
-                                </form>
-                                <li role="presentation" class="divider"></li>
-                                <form action="myServlet" method="post">
-                                    <input type="hidden" name="page" value="categories">
-                                    <input type="hidden" name="category" value="software">
-                                    <input type="hidden" name="subcategory" value="other">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Other</a></li>
-                                </form>-->
+                                <!--                                <li role="presentation" class="divider"></li>
+                                                                <form action="myServlet" method="post">
+                                                                    <input type="hidden" name="page" value="categories">
+                                                                    <input type="hidden" name="category" value="software">
+                                                                    <input type="hidden" name="subcategory" value="antivirus">
+                                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Anti Virus</a></li>
+                                                                </form>
+                                                                <li role="presentation" class="divider"></li>
+                                                                <form action="myServlet" method="post">
+                                                                    <input type="hidden" name="page" value="categories">
+                                                                    <input type="hidden" name="category" value="software">
+                                                                    <input type="hidden" name="subcategory" value="other">
+                                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" onclick="$(this).closest('form').submit();" value="">Other</a></li>
+                                                                </form>-->
                             </ul>
                         </li>
                     </ul>

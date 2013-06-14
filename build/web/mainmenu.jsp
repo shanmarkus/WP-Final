@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="currencyclient.CurrencyClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="header.jsp" %>
@@ -15,9 +16,9 @@
     </div>
     <div class="span3 offset6"> 
         <%
-    ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
-    out.println("Items in cart: " + cart.size());
-    out.println("<a href=\"checkout.jsp\">Check out</a>");
+            ArrayList<ProductInCart> cart = (ArrayList<ProductInCart>) request.getSession(false).getAttribute("cart");
+            out.println("Items in cart: " + cart.size());
+            out.println("<a href=\"checkout.jsp\">Check out</a>");
         %> 
     </div>
 
@@ -61,20 +62,32 @@
 
 <!--Main Container-->
 <div class="row-fluid">
+
     <div class="span4 one-third-container">
-        Shan maho   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        <br> <br>
-        Read More
+        Convert to Rupiah
+        <form action="myServlet" method="post">
+            <input type="text" name="input1" class="input-small">
+            <input type="submit" name="submit" value="Convert" class="btn">
+            <input type="hidden" name="page" value="converterAS">
+        </form>
+        Rp. <%=session.getAttribute("res")%> ,-
     </div>
     <div class="span4 one-third-container">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        <br> <br>
-        Read More
+        <a class="twitter-timeline" href="https://twitter.com/shanmarkus" data-widget-id="345415472793145344">Tweets by @shanmarkus</a>
+        <script>!function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = p + "://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, "script", "twitter-wjs");
+        </script>
+
     </div>
     <div class="span4 one-third-container">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        <br> <br>
-        Read More
+        <div class="fb-like" data-href="https://www.facebook.com/CryingOnionCorp?ref=ts&amp;fref=ts" data-send="true" data-width="450" data-show-faces="true"></div>
     </div>
 </div>
 
