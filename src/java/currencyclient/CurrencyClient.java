@@ -49,6 +49,14 @@ public class CurrencyClient {
         wsnetx.Currency toCurrency = wsnetx.Currency.USD;
         return  inputD * conversionRate(fromCurrency,toCurrency);
     }
+    
+    public double RupiahtoUSD(String input) {
+        input = "1";
+        double inputD=Double.parseDouble(input);
+        wsnetx.Currency fromCurrency = wsnetx.Currency.USD;
+        wsnetx.Currency toCurrency = wsnetx.Currency.IDR;
+        return  inputD * conversionRate(fromCurrency,toCurrency);
+    }
     public double convertRupiahtoEuro(String input) {
         double inputD=Double.parseDouble(input);
         wsnetx.Currency fromCurrency = wsnetx.Currency.IDR;

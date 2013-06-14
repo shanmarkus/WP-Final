@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="file:/Users/Shan/Desktop/Application%20Services/CurrencyClient/xml-resources/web-service-references/CurrencyConvertor/wsdl/www.webservicex.net/CurrencyConvertor.asmx.wsdl" uri="src/conf/xml-resources/web-service-references/CurrencyConvertor.asmx/wsdl/CurrencyConvertor.asmx.wsdl"/>
+    <system systemId="http://api.search.yahoo.com/WebSearchService/V1/WebSearchResponse.xsd" uri="src/conf/xml-resources/jaxb/YahooSearchResult/api.search.yahoo.com/WebSearchService/V1/WebSearchResponse.xsd"/>
 </catalog>

@@ -70,7 +70,7 @@
                 <button class="close" data-dismiss="modal">×</button>
                 <h3>Please Fill this form</h3>
             </div>
-            <form action="myServlet" onsubmit="return validateForm();">
+            <form action="myServlet">
                 <div class="modal-body">
                     <div class="container-fluid marginpage">
                         <div class="row-fluid">

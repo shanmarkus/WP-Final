@@ -5,6 +5,12 @@
 --%>
 
 
+<%@page import="java.util.List"%>
+<%@page import="yahoo.srch.ResultType"%>
+<%@page import="java.net.URL"%>
+<%@page import="javax.xml.bind.JAXBContext"%>
+<%@page import="javax.xml.bind.Unmarshaller"%>
+<%@page import="yahoo.srch.ResultSet"%>
 <%@page import="currencyclient.CurrencyClient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -70,10 +76,20 @@
             <input type="submit" name="submit" value="Convert" class="btn">
             <input type="hidden" name="page" value="converterAS">
         </form>
-        Rp. <%=session.getAttribute("res")%> ,-
+        <h4>
+            Rp. <%=session.getAttribute("res")%> ,-
+        </h4>
+        <br>
+        <%
+            CurrencyClient a = new CurrencyClient();
+            double x = a.RupiahtoUSD("1");
+            out.println("<h4>");
+            out.println("Current rate this day is Rp." + x);
+            out.println("</h4>");
+        %>
     </div>
     <div class="span4 one-third-container">
-        <a class="twitter-timeline" href="https://twitter.com/shanmarkus" data-widget-id="345415472793145344">Tweets by @shanmarkus</a>
+        <a class="twitter-timeline" href="https://twitter.com/shanmarkus" data-widget-id="345433787439673345">Tweets by @shanmarkus</a>
         <script>!function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
                 if (!d.getElementById(id)) {
@@ -82,12 +98,12 @@
                     js.src = p + "://platform.twitter.com/widgets.js";
                     fjs.parentNode.insertBefore(js, fjs);
                 }
-            }(document, "script", "twitter-wjs");
-        </script>
+            }(document, "script", "twitter-wjs");</script>
+
 
     </div>
     <div class="span4 one-third-container">
-        <div class="fb-like" data-href="https://www.facebook.com/CryingOnionCorp?ref=ts&amp;fref=ts" data-send="true" data-width="450" data-show-faces="true"></div>
+        <div class="fb-like" data-href="https://www.facebook.com/CryingOnionCorp?ref=ts&amp;fref=ts" data-send="true" data-width="300" data-show-faces="true"></div>
     </div>
 </div>
 

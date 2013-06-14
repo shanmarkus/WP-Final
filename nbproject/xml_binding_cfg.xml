@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<schemas xmlns='http://xml.netbeans.org/schema/JAXBWizConfig' destdir='build/generated-sources/jaxb' projectName='WP_LAB_QUIZ2' version='1.0'>
+	<schema type='-xmlschema' package='' name='YahooSearchResult'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='src/conf/xml-resources/jaxb/YahooSearchResult/api.search.yahoo.com/WebSearchService/V1/WebSearchResponse.xsd' origLocation='http://api.search.yahoo.com/WebSearchService/V1/WebSearchResponse.xsd' origLocationType='url'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+</schemas>

@@ -4,6 +4,7 @@
     Author     : Jason
 --%>
 
+<%@page import="currencyclient.CurrencyClient"%>
 <%@ include file="header.jsp" %>
 
 <!--        Main Container-->
@@ -24,6 +25,7 @@
 <div>
     <div class="span12 marginTop">
         <%
+            CurrencyClient a = new CurrencyClient();
             String category = (session.getAttribute("category").toString());
             String subcategory = (session.getAttribute("subcategory").toString());   
             out.println(category);
@@ -52,7 +54,9 @@
                                     out.println("<a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#" + p.getProductID()+ "\">");
                                     out.print(p.getName());
                                     out.print("</a>");
-                                    out.println("Price: " + p.getPrice());
+                                    out.println("Price in USD " + p.getPrice());
+                                    out.println("</br>");
+                                    out.println("Price in Rupiah: Rp." + a.convertUSDtoRupiah(p.getPrice().toString()));
                                 out.println("</div>");
                             out.println("</div>");
                             
